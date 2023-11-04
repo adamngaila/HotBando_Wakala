@@ -13,7 +13,7 @@ Thank you for considering contributing to the HotBando project! The contribution
 
 #### Security Vulnerabilities
 
-If you discover a security vulnerability within MauzoSheet, please send an e-mail to Dustan Mbaga via [adamngaila@gmail
+If you discover a security vulnerability within MauzoSheet, please send an e-mail to Adam Mwangaila via [adamngaila@gmail
 .com](mailto:dustan@mauzosheet.com). All security vulnerabilities will be promptly addressed.
 
 #### Owners

@@ -103,55 +103,51 @@
                         <label class="form-check-label">
                           <input type="checkbox" class="form-check-input" value='Approved' id='approve' name='approve' > Authorize </label>
                       </div>
-                      <button type="submit" class="btn btn-primary mb-2">Uza</button>
+                      <button type="submit" class="btn btn-primary mb-2" id='uza_button'>Uza</button>
                     </form>
                   </div>
                 </div>
               </div>
-              <div class="col-12 grid-margin stretch-card" style='display:none;'>
+        
+              <div class="col-12 grid-margin stretch-card" style='display:none;' id="mteja_signup">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">TAARIFA ZA MTEJA</h4>
                    
-                    <form class="form-inline" enctype="multipart/form-data">
+                    <form class="form-inline" enctype="multipart/form-data" id="add-mteja-form">
                     @csrf
-                    <div class="input-group mb-2 mr-sm-2">
-                      <div class="input-group-prepend">
-                      <div class="input-group-text" >ID</div>
-                      </div>
-                      <input type="text" class="form-control" id="Customer_id" name='Customer_id' placeholder="" disabled>
-                        </div>
-                     
+  
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                           <div class="input-group-text">Simu</div>
                         </div>
-                        <input type="text" class="form-control" id="simu" name="simu" placeholder=" " disabled>
+                        <input type="text" class="form-control" id="simu" name="simu" placeholder=" " >
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                           <div class="input-group-text">Jina</div>
                         </div>
-                        <input type="text" class="form-control" id="jina" name="jina" placeholder=" "disabled>
+                        <input type="text" class="form-control" id="jina" name="jina" placeholder=" ">
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                           <div class="input-group-text">email</div>
                         </div>
-                        <input type="email" class="form-control" id="email" name="email" placeholder=" " disabled>
+                        <input type="email" class="form-control" id="email" name="email" placeholder=" " >
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                           <div class="input-group-text">Password</div>
                         </div>
-                        <input type="text" class="form-control" id="pwd" name="pwd" placeholder=" "disabled>
+                        <input type="text" class="form-control" id="pwd" name="pwd" placeholder=" ">
                       </div>
     
-                      <button type="submit" class="btn btn-primary mb-2" id='sajili' disabled>Sajili</button>
+                      <button type="submit" class="btn btn-primary mb-2" id='sajili'>Sajili</button>
                     </form>
                   </div>
                 </div>
               </div>
+              
         </div>
         
     </div>

@@ -48,6 +48,7 @@ class TransactionController extends Controller
         'status'=>true,
         'phone'=>$data['username'],
         'id'=>$data['.id'],
+        'jina'=>$data['first-name'],
     ];
       return  $jibu;
   }
@@ -130,9 +131,14 @@ class TransactionController extends Controller
     $add_profile = $this->create_bando_profile( $id,$request->vifurushi);
     $add_p = $add_profile;
    // return redirect('dashboard');
-   return response()->json(['success'=> $add_p ]);
+   return response()->json(['success'=> $add_p,
+  'status_user'=> 'valid',
+  'mteja'=> $verify_local['jina'],
+]);
    }else{
-    return response()->json(['success'=> 'failed to sell ,customer not found in database']);
+    return response()->json(['success'=> 'failed to sell ,customer not found in database',
+  'status_user'=>'invalid',
+]);
    }
   }
 }

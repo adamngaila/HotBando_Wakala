@@ -1,11 +1,8 @@
 $(document).ready(function(){
     
     var form = '#add-sale-form';
+    var form_mteja = '#add-mteja-form';
     
-   
-
-
-
     $(form).on('submit', function(event){
         event.preventDefault();
 
@@ -32,14 +29,31 @@ $(document).ready(function(){
             processData: false,
             success:function(response)
             {
-                $(form).trigger("reset");
+               
                 alert(response.success);
+                if(response.status_user == 'valid')
+                {
+
+                    alert(' bando la shg' + vifurushi + 'limeuzwa kwa '+response.mteja+ 'mwenye namba ' +simu);
+                    $(form).trigger("reset");
+                }
+                if(response.status_user == 'invalid')
+                {
+                    $("#mteja_signup").show();
+                    $("#uza_button").attr('disabled', true);
+                    $("#vifurushi").attr('disabled', true);
+                    $("#Amount").attr('disabled', true);
+                    $("#approve").attr('disabled', true);
+                    $("#Customer_phone").attr('disabled', true);
+                    $("#payment").attr('disabled', true);
+                }
              
-                alert(' bando la shg' + vifurushi + 'limeuzwa kwa' +simu);
+               
             },
             error: function(response) {
             }
         });
     });
+
 
 });

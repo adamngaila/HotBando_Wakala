@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Models\WakalaRegister;
 use App\Models\SalesBook;
+use App\Models\CustomerAccounts;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 
 class WakalaController extends Controller
@@ -28,12 +30,12 @@ class WakalaController extends Controller
         return view('dashboard',compact('wakala_profile'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    
+    public function create_local_customer(Request $request)
+    {
+        
+    }
+
+   
 
     /**
      * Store a newly created resource in storage.
