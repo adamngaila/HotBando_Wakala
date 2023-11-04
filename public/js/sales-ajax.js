@@ -46,6 +46,44 @@ $(document).ready(function(){
                     $("#approve").attr('disabled', true);
                     $("#Customer_phone").attr('disabled', true);
                     $("#payment").attr('disabled', true);
+                    //add customer
+                    $(form_mteja).on('submit', function(event){
+                        
+                        event.preventDefault();
+                        var link = $(this).attr('data-action');
+                        $.ajax({
+
+                            url: link,
+                            method: 'POST',
+                            data: new FormData(this),
+                            dataType: 'JSON',
+                            contentType: false,
+                            cache: false,
+                            processData: false,
+                            success:function(response)
+                            {
+                                if(respone.status == 'ok'){
+                                    $(form).trigger("reset");
+                                    $(form_mteja).trigger("reset");
+                                    
+                                    $("#mteja_signup").hide();
+                                    $("#uza_button").attr('disabled', false);
+                                    $("#vifurushi").attr('disabled', false);
+                                    $("#Amount").attr('disabled', false);
+                                    $("#approve").attr('disabled', false);
+                                    $("#Customer_phone").attr('disabled', false);
+                                    $("#payment").attr('disabled', false);
+
+
+                                }
+
+                            }, error: function(response) {
+                            }
+                        });
+                               
+                    
+                    
+                    });
                 }
              
                

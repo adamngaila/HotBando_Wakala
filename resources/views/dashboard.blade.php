@@ -112,9 +112,9 @@
               <div class="col-12 grid-margin stretch-card" style='display:none;' id="mteja_signup">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">TAARIFA ZA MTEJA</h4>
+                    <h4 class="card-title">ONGEZA TAARIFA ZA MTEJA</h4>
                    
-                    <form class="form-inline" enctype="multipart/form-data" id="add-mteja-form">
+                    <form class="form-inline" data-action="{{ route('local_customer_signup') }}" method ="POST" enctype="multipart/form-data" id="add-mteja-form">
                     @csrf
   
                       <div class="input-group mb-2 mr-sm-2">

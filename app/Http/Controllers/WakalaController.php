@@ -26,71 +26,63 @@ class WakalaController extends Controller
     {
         $user_id = Auth::user()->User_id;
         $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
-      
+     
         return view('dashboard',compact('wakala_profile'));
     }
 
     public function create_local_customer(Request $request)
     {
-        
+        $user_id = Auth::user()->User_id;
+        $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
+        $wakala = $wakala_profile->json();
+        $simu = $request->simu;
+        $jina = $request->jina;
+        $pwd = $request->pwd;
+        $email= $request->email;
+
+           $response = Http::post('https://api.loanpage.co.tz/signup',[
+                "phone"=>$simu,
+                "name"=>$jina,
+                "pwd"=>$pwd,
+                "email"=>$email,
+            ]);
+            if($response){
+                $status='ok';
+            }
+          else{
+           // echo 'Message: server failed to add new custoemer because of incomplete info';
+            $error='found';
+        }
+    
+        return response()->json(['status'=>$status,
+        'error'=>$error,
+        ]);
     }
+    
+Public function generate_customerid($size)
+{
+    $alpha_key ='HB-CST-';
+    $keys = range('0', '9');
 
-   
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    for ($i = 0; $i < 2; $i++)
     {
-        //
+      $alpha_key .= $keys[array_rand($keys)];
+
+    }
+    $length = $size - 2;
+
+    $key = '';
+    $keys = range(0, 9);
+
+    for ($i = 0; $i < $length; $i++) {
+      $key .= $keys[array_rand($keys)];
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    return $alpha_key . $key;
+        return $test;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+ 
    
 }
