@@ -34,11 +34,12 @@ class WakalaController extends Controller
     {
         $user_id = Auth::user()->User_id;
         $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
-        $wakala = $wakala_profile->json();
+        //$wakala = $wakala_profile->json();
         $simu = $request->simu;
         $jina = $request->jina;
         $pwd = $request->pwd;
         $email= $request->email;
+        $error =null;
 
            $response = Http::post('https://api.loanpage.co.tz/signup',[
                 "phone"=>$simu,
@@ -46,12 +47,13 @@ class WakalaController extends Controller
                 "pwd"=>$pwd,
                 "email"=>$email,
             ]);
-            if($response){
+            $responses = $response->json();
+            if($responses['done']){
                 $status='ok';
             }
           else{
            // echo 'Message: server failed to add new custoemer because of incomplete info';
-            $error='found';
+           $status= $responses;
         }
     
         return response()->json(['status'=>$status,

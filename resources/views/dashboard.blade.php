@@ -41,7 +41,7 @@
                       <div class="col-md-6 col-xl report-inner-card">
                         <div class="inner-card-text">
                           <span class="report-title">COMMISSION</span>
-                          <h4>%</h4>
+                          <h4>{{ $wakala_profile->Wakala_commission}}</h4>
                           <span class="report-count"> 1 Reports</span>
                         </div>
                         <div class="inner-card-icon bg-warning">

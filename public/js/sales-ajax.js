@@ -1,5 +1,10 @@
 $(document).ready(function(){
-    
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+
+    });
     var form = '#add-sale-form';
     var form_mteja = '#add-mteja-form';
     
@@ -51,19 +56,23 @@ $(document).ready(function(){
                         
                         event.preventDefault();
                         var link = $(this).attr('data-action');
+                        var simu = document.getElementById('simu').value;
+                        var jina = document.getElementById('jina').value;
+                        var email = document.getElementById('email').value;
+                        var pwd = document.getElementById('pwd').value;
                         $.ajax({
 
                             url: link,
                             method: 'POST',
-                            data: new FormData(this),
+                             data: new FormData(this),
                             dataType: 'JSON',
                             contentType: false,
                             cache: false,
                             processData: false,
                             success:function(response)
                             {
-                                if(respone.status == 'ok'){
-                                    $(form).trigger("reset");
+                                if(response.status == 'ok'){
+                                   
                                     $(form_mteja).trigger("reset");
                                     
                                     $("#mteja_signup").hide();
@@ -75,6 +84,9 @@ $(document).ready(function(){
                                     $("#payment").attr('disabled', false);
 
 
+                                }else{
+                                    alert(response.status);
+                                    console.log(response.status);
                                 }
 
                             }, error: function(response) {
@@ -89,6 +101,8 @@ $(document).ready(function(){
                
             },
             error: function(response) {
+                alert('Server ya HotBando ipo dowm tafadhali subiri');
+                $(form).trigger("reset");
             }
         });
     });

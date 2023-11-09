@@ -63,9 +63,25 @@ class AdminController extends Controller
      */
     public function show_local_customer_list()
     {
+        try{
         $response = Http::get('https://api.loanpage.co.tz/tino');
         $data = $response->json();
+        }
+        catch (Exception $e) {
         
+            echo "server ofline";
+            $data=[
+                'first-name'=>'',
+                'active'=>'',
+                'username'=>'',
+                'email'=>'',
+                'download-used'=>'',
+                'upload-used'=>'',
+                'last-seen'=>'',
+                'disabled'=>'',
+        ];
+
+        }
         return view('admin.customers.index',compact('data'));
     }
     public function fetch_customer(){
