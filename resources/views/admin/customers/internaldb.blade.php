@@ -17,7 +17,7 @@
                     </div>
                     <div class="row report-inner-cards-wrapper">
                     <div class="col-md-12">
-                    <table class="table table-bordered" id="sales-list-table" style="width:80%; word-wrap: break-word;">
+                    <table class="table table-bordered" id="table-local-customer" style="width:80%; word-wrap: break-word;">
                       <thead>
                         <tr>
                       
@@ -25,9 +25,9 @@
                           <th>   Name </th>
                           <th> Online</th>
                           <th> Phone </th>
-                           <!-- <th> Adress </th> -->
-                          
-                          <th> Last seen </th>
+                           <th> Wakala </th>
+                           <th> Last seen </th>
+                           <th> Uptime used </th>
                       
                           <th> Status Disable </th>
                         </tr>
@@ -40,8 +40,9 @@
                      <td>{{$result->Name}}</td>
                      <td>{{$result->Status_Online}}</td>
                      <td>{{$result->Phone}}</td>
-
+                     <td>{{$result->Wakala_code}}</td>
                      <td>{{$result->last_seen}}</td>
+                     <td>{{$result->uptime_used}}</td>
                      <td>{{$result->Status_Disabled}}</td>
                     
     

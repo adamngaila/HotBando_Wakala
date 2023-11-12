@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Models\WakalaRegister;
 use App\Models\SalesBook;
+use App\Models\Transactions;
 use App\Models\CustomerAccounts;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -26,15 +27,34 @@ class WakalaController extends Controller
     {
         $user_id = Auth::user()->User_id;
         $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
+        $customers_count = CustomerAccounts::where('Wakala_code',$wakala_profile->Wakala_code)->count();
+        $mauzo = SalesBook::where('Wakala_code',$wakala_profile->Wakala_code)->sum('Amount');
+        $mapato = Transactions::where('Wakala_code',$wakala_profile->Wakala_code)->sum('Commission');
+
      
-        return view('dashboard',compact('wakala_profile'));
+        return view('wakalaViews.dashboard',compact('wakala_profile','customers_count','mauzo','mapato'));
+    }
+    public function show_customers(){
+        
+        $user_id = Auth::user()->User_id;
+        $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
+        $customers = CustomerAccounts::where('Wakala_code',$wakala_profile->Wakala_code)->get();
+        return view('wakalaViews.wateja',compact('customers','wakala_profile'));
+    }
+
+    public function show_mauzo(){
+        
+        $user_id = Auth::user()->User_id;
+        $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
+        $mauzo = SalesBook::where('Wakala_code',$wakala_profile->Wakala_code)->get();
+        return view('wakalaViews.mauzo',compact('mauzo','wakala_profile'));
     }
 
     public function create_local_customer(Request $request)
     {
         $user_id = Auth::user()->User_id;
-        $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
-        //$wakala = $wakala_profile->json();
+       // $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
+        $wakala = $request->wakala_code;
         $simu = $request->simu;
         $jina = $request->jina;
         $pwd = $request->pwd;
@@ -46,7 +66,7 @@ class WakalaController extends Controller
                 "name"=>$jina,
                 "pwd"=>$pwd,
                 "email"=>$email,
-                "wakala"=>'',
+                "wakala"=>$wakala,
             ]);
             $responses = $response->json();
             if($responses['done']){

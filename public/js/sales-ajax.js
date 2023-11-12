@@ -71,7 +71,7 @@ $(document).ready(function(){
                             processData: false,
                             success:function(response)
                             {
-                                if(response.status == 'ok'){
+                                if(response.status){
                                    
                                     $(form_mteja).trigger("reset");
                                     

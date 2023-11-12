@@ -25,7 +25,7 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="./images/favicon.png" />
      <!-- plugins:css -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"/>
+   
      <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
     
   </head>
@@ -84,6 +84,7 @@
     <script src="../../js/misc.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.0/Chart.min.js"></script>
     <script src="{{ asset('js/customer.js')  }}"defer ></script>
+    <script src="{{ asset('js/sales-ajax.js') }}" defer></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <script>
       $(document).ready( function () {

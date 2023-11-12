@@ -29,12 +29,17 @@
             </li>
             <li class="nav-item nav-category"><span class="nav-link">WAKALA</span></li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/icons/simple-line-icons.html">
+              <a class="nav-link" href="wakala_mauzo">
                 <span class="menu-title">Mauzo</span>
                 <i class="icon-basket-loaded menu-icon"></i>
               </a>
             </li>
-            
+            <li class="nav-item">
+              <a class="nav-link" href="wakala_wateja">
+                <span class="menu-title">Wateja   </span>
+                <i class="icon-people menu-icon"></i>
+              </a>
+            </li>
          
             <li class="nav-item">
               <a class="nav-link" href="">

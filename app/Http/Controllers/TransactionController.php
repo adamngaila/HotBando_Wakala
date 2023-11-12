@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Models\User;
 use App\Models\Transactions;
+use App\Models\CustomerAccounts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+
 
 
 
@@ -82,7 +84,9 @@ class TransactionController extends Controller
         if(Auth::user()->Usertype == 'Wakala')
     {
       if( $verify_local['status']){
-        $wakala_code = WakalaRegister::where('User_id', $user_id)->pluck('Wakala_code');
+        $wakala_code = $request->wakala_code;
+        $customer_id = CustomerAccounts::where('Phone',$request->Customer_phone)->pluck('Customer_id');
+        $customer_id_value = $customer_id;
         $wakala_commission= WakalaRegister::where('User_id', $user_id)->pluck('Wakala_commission');
         $sales_code = $this->generate_salescode(3);
         $trans_code = $this->generate_transactioncode(3);
@@ -96,9 +100,9 @@ class TransactionController extends Controller
         if($request->Amount >= $package_value)
         {
             $sales = SalesBook::create([
-            'Wakala_code'=> $wakala_code,
+            'Wakala_code'=>$request->wakala_code,
             'Sales_id'=> $sales_code,
-            'Customer_id'=> $request->customer_id,
+            'Customer_id'=>  $verify_local['id'],
             'Customer_phone'=>$request->Customer_phone,
             'Package_type'=> $request->vifurushi,
             'Amount'=> $request->Amount,
@@ -108,7 +112,7 @@ class TransactionController extends Controller
             $Commission = 0.1*$request->Amount;
         $wakala_transaction = Transactions::create([
          'Wakala_code'=> $wakala_code,
-        'Customer_id'=>$request->Customer_phone,
+        'Customer_id'=>$verify_local['id'],
         'Transaction_id'=> $trans_code,
         'Sales_id'=> $sales_code,
         'transaction_type'=> $request->payment,
@@ -120,8 +124,8 @@ class TransactionController extends Controller
         ]);
         }
     
-    $sum_mauzo = Transactions::where('Wakala_code',$wakala_code[0])->sum('Cash');
-    $sum_wakala_gawio = Transactions::where('Wakala_code',$wakala_code[0])->sum('Commission');
+    $sum_mauzo = Transactions::where('Wakala_code',$wakala_code)->sum('Cash');
+    $sum_wakala_gawio = Transactions::where('Wakala_code',$wakala_code)->sum('Commission');
     WakalaRegister::where('Wakala_code',$wakala_code)->update([
         'Jumla_mauzo'=>$sum_mauzo,
         'wakala_mapato'=>$sum_wakala_gawio,

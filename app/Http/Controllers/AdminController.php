@@ -112,21 +112,22 @@ class AdminController extends Controller
         $dataCreate = [];
 
         foreach($data as $item){
-            
+
 
             $preparedData[]=[
+                'Wakala_code'=>$item['last-name'] ?? null,
                 'Customer_id'=>$item['.id'],
                'Name'=>$item['username'],
                 'Status_Online'=>$item['active'],
                 'Status_Disabled'=>$item['disabled'],
                 'Phone'=>$item['username'],
-              //  'email'=>$item['email'],
+                'email'=>$item['email'] ?? null,
                 'password'=>$item['password'],
-                'last_seen'=>$item['last-seen'],
-                'shared_users'=>$item['shared-users'],
-               // 'download_used'=>$item['download-used'],
-              // 'upload_used'=>$item['upload-used'],
-              // 'uptime_used'=>$item['uptime-used'],
+                'last_seen'=>$item['last-seen'] ?? null,
+                'shared_users'=>$item['shared-users'] ?? null,
+                'download_used'=>$item['download-used'] ?? null,
+               'upload_used'=>$item['upload-used'] ?? null,
+               'uptime_used'=>$item['uptime-used'] ?? null,
               
             ];
         }
