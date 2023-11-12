@@ -69,6 +69,7 @@
                           <th>   Name </th>
                           <th> Online</th>
                           <th> Phone </th>
+                          <th> Password </th>
                            <th> Wakala </th>
                            <th> Last seen </th>
                            <th> Uptime used </th>
@@ -84,6 +85,7 @@
                      <td>{{$result->Name}}</td>
                      <td>{{$result->Status_Online}}</td>
                      <td>{{$result->Phone}}</td>
+                     <td>{{$result->password}}</td>
                      <td>{{$result->Wakala_code}}</td>
                      <td>{{$result->last_seen}}</td>
                      <td>{{$result->uptime_used}}</td>
