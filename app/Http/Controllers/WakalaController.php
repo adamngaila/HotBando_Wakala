@@ -46,6 +46,7 @@ class WakalaController extends Controller
                 "name"=>$jina,
                 "pwd"=>$pwd,
                 "email"=>$email,
+                "wakala"=>'',
             ]);
             $responses = $response->json();
             if($responses['done']){

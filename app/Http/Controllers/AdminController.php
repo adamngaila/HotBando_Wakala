@@ -9,6 +9,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Models\WakalaRegister;
+use App\Models\CustomerAccounts;
+use App\Models\SalesBook;
+use App\Models\Transactions;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
@@ -43,6 +46,11 @@ class AdminController extends Controller
     public function create_wakala(){
         return view('admin.wakala.create');
     }
+    public function show_sales()
+    {
+        $sales = SalesBook::all();
+        return view('admin.revenues.sales',compact('sales'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -61,11 +69,19 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function show_internaldb_customers()
+    {
+        $customers = CustomerAccounts::all();
+        return view('admin.customers.internaldb',compact('customers'));
+    }
+
     public function show_local_customer_list()
     {
         try{
         $response = Http::get('https://api.loanpage.co.tz/tino');
         $data = $response->json();
+
+        
         }
         catch (Exception $e) {
         
@@ -81,14 +97,57 @@ class AdminController extends Controller
                 'disabled'=>'',
         ];
 
+
         }
         return view('admin.customers.index',compact('data'));
     }
-    public function fetch_customer(){
+
+    public function sync_customer(){
 
         $response = Http::get('https://api.loanpage.co.tz/tino');
         $data = $response->json();
-        return response( $response,201);
+
+        $preparedData = [];
+        $dataUpdate = [];
+        $dataCreate = [];
+
+        foreach($data as $item){
+            
+
+            $preparedData[]=[
+                'Customer_id'=>$item['.id'],
+               'Name'=>$item['username'],
+                'Status_Online'=>$item['active'],
+                'Status_Disabled'=>$item['disabled'],
+                'Phone'=>$item['username'],
+              //  'email'=>$item['email'],
+                'password'=>$item['password'],
+                'last_seen'=>$item['last-seen'],
+                'shared_users'=>$item['shared-users'],
+               // 'download_used'=>$item['download-used'],
+              // 'upload_used'=>$item['upload-used'],
+              // 'uptime_used'=>$item['uptime-used'],
+              
+            ];
+        }
+
+        $checkExisting = CustomerAccounts::whereIn('Customer_id',array_column($preparedData,'Customer_id'))->pluck('Customer_id')->toArray();
+        foreach($preparedData as $item)
+        {
+            if(in_array($item['Customer_id'],$checkExisting)){
+                $dataUpdate[]=$item;
+            }else{
+                $dataCreate[]=$item;
+            }
+        }
+        foreach($dataUpdate as $item){
+            $updateCustomer = CustomerAccounts::where('Customer_id',$item['Customer_id'])->first();
+            $updateCustomer->fill($item);
+            $updateCustomer->save();
+
+            }
+            CustomerAccounts::insert($dataCreate);   
+       return response()->json(['message'=>'users data synced successifully']);
     }
        
 

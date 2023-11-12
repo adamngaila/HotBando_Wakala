@@ -37,9 +37,11 @@
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="{{ route('show_admin') }}">Admin</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ route('show_wakala') }}">Wakala</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ route('local_customer_list') }}">Cusomers</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('internaldb_customers') }}">Cusomers</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('local_customer_list') }}">Router Cusomers</a></li>
                 </ul>
               </div>
+</li>
               <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-title">REVENUES</span>
@@ -47,7 +49,7 @@
               </a>
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="">Sales</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('show_sales') }}">Sales</a></li>
                   <li class="nav-item"> <a class="nav-link" href="">Transactions</a></li>
                   <li class="nav-item"> <a class="nav-link" href="">Report</a></li>
                 </ul>

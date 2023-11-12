@@ -58,12 +58,13 @@ Route::middleware('auth')->group(function () {
    Route::any('/admin_dashboard',[AdminController::class,'index'])->name('admin_dashboard');
    Route::any('/show_admin',[AdminController::class,'show_admin'])->name('show_admin');
    Route::any('/show_wakala',[AdminController::class,'show_wakala'])->name('show_wakala');
+   Route::any('/show_sales',[AdminController::class,'show_sales'])->name('show_sales');
    Route::any('/create_wakala_page',[AdminController::class,'create_wakala'])->name('create_wakala_page');
    Route::any('/create_wakala',[RegisteredUserController::class,'create_wakala'])->name('create_wakala');
    Route::any('/local_customer_list',[AdminController::class,'show_local_customer_list'])->name('local_customer_list');
-   Route::any('/local_customer_fetch',[AdminController::class,'fetch_customer'])->name('local_customer_fetch');
-  /* Route::any('/admin_users/edit_wakala',[AdminController::class,'edit_wakala']);
-   Route::any('/admin_users/edit_admin',[AdminController::class,'edit_admin']);
+   Route::any('/local_customer_sync',[AdminController::class,'sync_customer'])->name('local_customer_sync');
+  Route::any('/internaldb_customers',[AdminController::class,'show_internaldb_customers'])->name('internaldb_customers');
+  /*  Route::any('/admin_users/edit_admin',[AdminController::class,'edit_admin']);
 */
                 
 });

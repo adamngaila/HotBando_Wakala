@@ -17,7 +17,7 @@
                     </div>
                     <div class="row report-inner-cards-wrapper">
                     <div class="col-md-12">
-                    <table class="table table-bordered table-hover" id="table-local-customer">
+                    <table class="table table-bordered table-hover" id="table-local-customer" style="width:90%; word-wrap: break-word;">
                       <thead>
                         <tr>
                       
@@ -25,7 +25,7 @@
                           <th>   Name </th>
                           <th> Online</th>
                           <th> Phone </th>
-                          <th> Adress </th>
+                           <!-- <th> Adress </th> -->
                           <th> Download-used </th>
                           <th> Upload-used </th>
                           <th> Last seen </th>
@@ -41,7 +41,7 @@
                          <td>{{ !empty($result['first-name']) ? $result['first-name'] : 'No information' }}</td>
                          <td>{{$result['active']}}</td>
                          <td>{{$result['username']}}</td>
-                         <td>{{ !empty($result['email']) ? $result['email'] : 'No information'}}</td>
+                         <!-- <td>{{ !empty($result['email']) ? $result['email'] : 'No information'}}</td> -->
                          <td>{{  !empty($result['download-used']) ? $result['download-used'] : 'No information'}}</td>
                          <td>{{  !empty($result['upload-used']) ? $result['upload-used'] : 'No information'}}</td>
                          <td>{{$result['last-seen']}}</td>

@@ -25,6 +25,8 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="./images/favicon.png" />
      <!-- plugins:css -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"/>
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
     
   </head>
   <body>
@@ -81,9 +83,21 @@
     <script src="../../js/off-canvas.js"></script>
     <script src="../../js/misc.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.0/Chart.min.js"></script>
-
+    <script src="{{ asset('js/customer.js')  }}"defer ></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+    <script>
+      $(document).ready( function () {
+    $('#table-local-customer').DataTable();
+    $('#admin-list-table').DataTable();
+    $('#wakala-list-table').DataTable();
+    $('#sales-list-table').DataTable();
+    $('#sales-list-table').addClass("compact nowrap w-100");
+    $('#table-local-customer').addClass("compact nowrap w-100");
+    
+} );
+    </script>
     <!-- End custom js for this page -->
     @yield('script')
- 
+    
     </body>
 </html>

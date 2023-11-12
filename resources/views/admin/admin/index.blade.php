@@ -16,7 +16,7 @@
                       </div>
                     </div>
                     <div class="row report-inner-cards-wrapper">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id='admin-list-table'>
                       <thead>
                         <tr>
                           <th> # </th>
