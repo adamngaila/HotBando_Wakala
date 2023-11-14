@@ -32,6 +32,9 @@ $(document).ready(function(){
             contentType: false,
             cache: false,
             processData: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
             success:function(response)
             {
                
