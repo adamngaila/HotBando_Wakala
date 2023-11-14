@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }} upgrade-insecure-requests" http-equiv="content-Security-Policy">
+        <meta name="csrf-token" content="{{ csrf_token() }}" http-equiv="content-Security-Policy">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{ config('app.name', 'HotBando|Admin') }}</title>
