@@ -29,10 +29,9 @@ $(document).ready(function(){
             method: 'POST',
             data: new FormData(this),
             dataType: 'JSON',
-            contentType: false,
-            cache: false,
-            processData: false,
-            
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
             success:function(response)
             {
                
