@@ -26,7 +26,7 @@ $(document).ready(function(){
 
         $.ajax({
             url: url,
-            method: 'POST',
+            typ: 'POST',
             data: new FormData(this),
             dataType: 'JSON',
             contentType: false,

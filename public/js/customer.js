@@ -1,13 +1,13 @@
 $(document).ready(function(){
     var form_mteja = '#add-mteja-form';
 
-// sync customers from local database     
+// sync customers from local database 
+
         $("#refresh").click(function() {
       
-            
-            $.ajax({
+              $.ajax({
               url: '/local_customer_sync',
-              type: 'post',
+              method: 'post',
               data: {
               
                 command: "snyc"
