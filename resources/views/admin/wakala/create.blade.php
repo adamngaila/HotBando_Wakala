@@ -109,14 +109,15 @@
                         </div>
                       </div>
                          <!-- Password -->
-            <div class="mt-4">
+                 <div class="col-md-6">
+                  <div class="form-group row">
                 <x-label for="password" :value="__('Password')" />
 
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
                                 required autocomplete="new-password" />
-            </div>
+            
 
             <!-- Confirm Password -->
             <div class="mt-4">
@@ -125,9 +126,9 @@
                 <x-input id="password_confirmation" class="block mt-1 w-full"
                                 type="password"
                                 name="password_confirmation" required />
-            </div>
-                     
-                      <x-button class="ml-4">
+                                </div>
+            </div></div> 
+                      <x-button class="ml-3">
                         {{ __('Sajili') }}
                       </x-button>
                   </div>

@@ -26,7 +26,7 @@
                           <th> Adress </th>
                           <th> Phone </th>
                           <th> Commission </th>
-                          <th> Target </th>
+                          <th> Sales </th>
                           <th>Income</th>
                           <th> Action </th>
                         </tr>
