@@ -128,10 +128,8 @@
                                 name="password_confirmation" required />
                                 </div>
             </div></div> 
-                      <x-button class="ml-3">
-                        {{ __('Sajili') }}
-                      </x-button>
-                  </div>
+            <button type="submit" class="btn btn-primary mb-2">SAJILI</button>
+                 
               </form>
                         </div>
                       </div>
