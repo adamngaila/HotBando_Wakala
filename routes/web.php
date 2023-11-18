@@ -28,7 +28,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::any('/dashboard',[WakalaController::class,'index'] )->name('dashboard');
     Route::any('/sale_bando',[TransactionController::class,'make_sales'])->name('sale_bando');;
-    Route::any('/local_cwustomer_signup',[WakalaController::class,'create_local_customer'])->name('local_customer_signup');
+    Route::any('/local_customer_signup',[WakalaController::class,'create_local_customer'])->name('local_customer_signup');
     Route::any('/wakala_wateja',[WakalaController::class,'show_customers'])->name('wakala_wateja');
     Route::any('/wakala_mauzo',[WakalaController::class,'show_mauzo'])->name('wakala_mauzo');
 
