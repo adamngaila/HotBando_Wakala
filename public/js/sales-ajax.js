@@ -22,13 +22,15 @@ $(document).ready(function(){
         var BASE_URL = window.location.origin;
         var simu = document.getElementById('Customer_phone').value;
        
-    
 
         $.ajax({
-            url: url,
+            url: "/sale_bando",
             method: 'POST',
             data: new FormData(this),
             dataType: 'JSON',
+            contentType: false,
+            cache: false,
+            processData: false,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
               },
@@ -62,13 +64,16 @@ $(document).ready(function(){
                         var pwd = document.getElementById('pwd').value;
                         $.ajax({
 
-                            url: link,
+                            url: "/local_customer_signup",
                             method: 'POST',
                              data: new FormData(this),
                             dataType: 'JSON',
                             contentType: false,
                             cache: false,
                             processData: false,
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                              },
                             success:function(response)
                             {
                                 if(response.status){
