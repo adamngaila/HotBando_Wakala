@@ -94,6 +94,8 @@
     $('#sales-list-table').DataTable();
     $('#sales-list-table').addClass("compact nowrap w-100");
     $('#table-local-customer').addClass("compact nowrap w-100");
+    $('#wakala-list-table').addClass("compact nowrap w-100");
+    $('#admin-list-table').addClass("compact nowrap w-100");
     
 } );
     </script>
