@@ -37,6 +37,8 @@ return array(
     'App\\Models\\SystemLogs' => $baseDir . '/app/Models/SystemLogs.php',
     'App\\Models\\Transactions' => $baseDir . '/app/Models/Transactions.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
+    'App\\Models\\VifurushiTransaction' => $baseDir . '/app/Models/VifurushiTransaction.php',
+    'App\\Models\\VifurushiWallet' => $baseDir . '/app/Models/VifurushiWallet.php',
     'App\\Models\\WakalaRegister' => $baseDir . '/app/Models/WakalaRegister.php',
     'App\\Models\\vifurushi' => $baseDir . '/app/Models/vifurushi.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

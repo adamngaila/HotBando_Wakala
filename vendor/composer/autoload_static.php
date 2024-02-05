@@ -538,6 +538,8 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         'App\\Models\\SystemLogs' => __DIR__ . '/../..' . '/app/Models/SystemLogs.php',
         'App\\Models\\Transactions' => __DIR__ . '/../..' . '/app/Models/Transactions.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\VifurushiTransaction' => __DIR__ . '/../..' . '/app/Models/VifurushiTransaction.php',
+        'App\\Models\\VifurushiWallet' => __DIR__ . '/../..' . '/app/Models/VifurushiWallet.php',
         'App\\Models\\WakalaRegister' => __DIR__ . '/../..' . '/app/Models/WakalaRegister.php',
         'App\\Models\\vifurushi' => __DIR__ . '/../..' . '/app/Models/vifurushi.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
