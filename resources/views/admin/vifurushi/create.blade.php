@@ -42,7 +42,7 @@
                       </div>
     
                       <button type="submit" class="btn btn-primary mb-2" id='sajili'>Save</button>
-                      <input type="text" class="form-control" style='display:none;' id="wakala_code" name="wakala_code"  value = "{{ $wakala_profile->Wakala_code}}" >
+                      <input type="text" class="form-control" style='display:none;' id="wakala_code" name="wakala_code"  value = "" >
                     </form>
                   </div>
                 </div>
