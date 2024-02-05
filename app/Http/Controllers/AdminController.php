@@ -12,6 +12,7 @@ use App\Models\WakalaRegister;
 use App\Models\CustomerAccounts;
 use App\Models\SalesBook;
 use App\Models\Transactions;
+use App\Models\vifurushi;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
@@ -151,6 +152,13 @@ class AdminController extends Controller
        return response()->json(['message'=>'users data synced successifully']);
     }
        
+    /*VIFURUSHI SECTION */
+    public function show_admin_vifurushi()
+    {
+        $admin = User::where('Usertype','Admin')->get();
+        return view('admin.vifurushi.index',compact('admin'));
+        
+    }
 
     /**
      * Show the form for editing the specified resource.
