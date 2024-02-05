@@ -55,7 +55,12 @@
                 </ul>
               </div>
             </li>
-            
+            <li class="nav-item">
+              <a class="nav-link" href="">
+                <span class="menu-title">Vifurushi</span>
+                <i class="icon-book-open menu-icon"></i>
+              </a>
+            </li>
          
             <li class="nav-item">
               <a class="nav-link" href="">

@@ -38,6 +38,7 @@ return array(
     'App\\Models\\Transactions' => $baseDir . '/app/Models/Transactions.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\WakalaRegister' => $baseDir . '/app/Models/WakalaRegister.php',
+    'App\\Models\\vifurushi' => $baseDir . '/app/Models/vifurushi.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
