@@ -65,6 +65,7 @@ Route::middleware('auth')->group(function () {
    Route::any('/local_customer_sync',[AdminController::class,'sync_customer'])->name('local_customer_sync');
   Route::any('/internaldb_customers',[AdminController::class,'show_internaldb_customers'])->name('internaldb_customers');
   Route::any('/admin_show_vifurushi',[AdminController::class,'show_admin_vifurushi'])->name('admin_show_vifurushi');
+  Route::any('/show_create_vifurushi',[AdminController::class,'admin_show_create_vifurushi'])->name('show_create_vifurushi');
   /*  Route::any('/admin_users/edit_admin',[AdminController::class,'edit_admin']);
 */
                 

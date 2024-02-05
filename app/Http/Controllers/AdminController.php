@@ -152,11 +152,21 @@ class AdminController extends Controller
        return response()->json(['message'=>'users data synced successifully']);
     }
        
-    /*VIFURUSHI SECTION */
+    /*    
+    *  ADMIN VIFURUSHI MAANGEMENT SECTION 
+    * 
+    */
+
     public function show_admin_vifurushi()
     {
-        $admin = User::where('Usertype','Admin')->get();
-        return view('admin.vifurushi.index',compact('admin'));
+        $vifurushi = vifurushi::all();
+        return view('admin.vifurushi.index',compact('vifurushi'));
+        
+    }
+    public function admin_show_create_vifurushi()
+    {
+        
+        return view('admin.vifurushi.create');
         
     }
 

@@ -9,8 +9,9 @@
                   <div class="row">
                       <div class="col-md-12">
                         <div class="d-sm-flex align-items-baseline report-summary-header">
-                          <h5 class="font-weight-semibold">List of Admin users</h5>  <button class="btn btn-icons border-0 p-2 float-right" ><i class="icon-plus"></i></button>
-                         
+                          <h5 class="font-weight-semibold">List of Vifurushi</h5> 
+                           <a href="{{ route('show_create_vifurushi') }}" ><button class="btn btn-icons border-0 p-2 float-right" ><i class="icon-plus"></i></button>
+</a>
                           <button class="btn btn-icons border-0 p-2 pull-right"><i class="icon-arrow-down-circle"></i></button>
                         </div>
                       </div>
@@ -20,21 +21,21 @@
                       <thead>
                         <tr>
                           <th> # </th>
-                          <th>  User id </th>
-                          <th> Name </th>
-                          <th> Adress </th>
-                          <th> Phone </th>
+                          <th>Description</th>
+                          <th>Value</th>
+                          <th> Amount Tzs </th>
+                          <th> Targeted Users</th>
                           <th> Action </th>
                         </tr>
                       </thead>
                       <tbody>
-                      @foreach($admin as $result)
+                      @foreach($vifurushi as $result)
                   <tr>
                      <td>{{$result->id}}</td>
-                     <td>{{$result->User_id}}</td>
-                     <td>{{$result->name}}</td>
-                     <td>{{$result->Adress}}</td>
-                     <td>{{$result->Phone}}</td>
+                     <td>{{$result->Description}}</td>
+                     <td>{{$result->value}}</td>
+                     <td>{{$result->amount}}</td>
+                     <td>{{$result->target_user}}</td>
                      <td><button class="btn btn-icons border-0 p-2"><i class="icon-close"></i></button>
                      <button class="btn btn-icons border-0 p-2"><i class="icon-note"></i></button></td>
                   </tr>
