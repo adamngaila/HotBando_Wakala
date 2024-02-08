@@ -169,7 +169,7 @@ class AdminController extends Controller
         return view('admin.vifurushi.create');
         
     }
-    public function admin_create_vivfurushi($request)
+    public function admin_create_vivfurushi(Request $request)
     {
         try{
         $kifurushi_Kipya = vifurushi::create([
