@@ -25,6 +25,8 @@
                           <th>Value</th>
                           <th> Amount Tzs </th>
                           <th> Targeted Users</th>
+                          <th> Status</th>
+                          <th> Expire Date</th>
                           <th> Action </th>
                         </tr>
                       </thead>
@@ -36,6 +38,8 @@
                      <td>{{$result->value}}</td>
                      <td>{{$result->amount}}</td>
                      <td>{{$result->target_user}}</td>
+                     <td>{{$result->status}}</td>
+                     <td>{{$result->expiration}}</td>
                      <td><button class="btn btn-icons border-0 p-2"><i class="icon-close"></i></button>
                      <button class="btn btn-icons border-0 p-2"><i class="icon-note"></i></button></td>
                   </tr>
