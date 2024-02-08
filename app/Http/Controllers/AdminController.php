@@ -173,10 +173,10 @@ class AdminController extends Controller
     {
         try{
         $kifurushi_Kipya = vifurushi::create([
-          'Description' => $reques->Description,
-          'value' => $reques->value,
-          'amount' => $reques->amount,
-          'target_user' => $reques->target_user,
+          'Description' => $request->Description,
+          'value' => $request->value,
+          'amount' => $request->amount,
+          'target_user' => $request->target_user,
 
         ]);
         return redirect ('admin_show_vifurushi');
