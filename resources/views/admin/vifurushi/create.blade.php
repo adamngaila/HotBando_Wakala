@@ -44,6 +44,12 @@
                              <option value= "Offer">Offer</option>
                         </select>
                       </div>
+                      <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">Expire Date</div>
+                        </div>
+                        <input type="date" class="form-control" id="expiration" name="expiration" placeholder=" " >
+                      </div>
     
                       <button type="submit" class="btn btn-primary mb-2" >Save</button>
               

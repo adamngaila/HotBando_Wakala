@@ -14,5 +14,7 @@ class vifurushi extends Model
         'value',
         'amount',
         'target_user',
+        'status',
+        'expiration',
 ];
 }

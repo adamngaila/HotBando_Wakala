@@ -177,6 +177,8 @@ class AdminController extends Controller
           'value' => $request->value,
           'amount' => $request->amount,
           'target_user' => $request->target_user,
+          'expiration' => $request->expiration,
+          'status' => 'Active',
 
         ]);
         return redirect ('admin_show_vifurushi');
