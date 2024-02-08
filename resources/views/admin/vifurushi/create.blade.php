@@ -13,7 +13,7 @@
                   <div class="card-body">
                     <h4 class="card-title">CREATE VIFURUSHI</h4>
                    
-                    <form class="form-inline" data-action="" method ="POST" enctype="multipart/form-data" id="add-mteja-form">
+                    <form class="form-inline" data-action="{{ route('create_vifurushi') }}" method ="POST" enctype="multipart/form-data" id="add-mteja-form">
                     @csrf
   
                       <div class="input-group mb-2 mr-sm-2">
