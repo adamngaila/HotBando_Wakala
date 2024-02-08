@@ -169,6 +169,23 @@ class AdminController extends Controller
         return view('admin.vifurushi.create');
         
     }
+    public function admin_create_vivfurushi($request)
+    {
+        try{
+        $kifurushi_Kipya = vifurushi::create([
+          'Description' => $reques->Description,
+          'value' => $reques->value,
+          'amount' => $reques->amount,
+          'target_user' => $reques->target_user,
+
+        ]);
+        return redirect ('admin_show_vifurushi');
+        }catch (Exception $e) {
+            // something went wrong
+            DB::rollback();
+        }
+
+    }
 
     /**
      * Show the form for editing the specified resource.

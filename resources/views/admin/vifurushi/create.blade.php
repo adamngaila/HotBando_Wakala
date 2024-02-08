@@ -20,25 +20,29 @@
                         <div class="input-group-prepend">
                           <div class="input-group-text">Description</div>
                         </div>
-                        <input type="text" class="form-control" id="simu" name="simu" placeholder=" " >
+                        <input type="text" class="form-control" id="Description" name="Description" placeholder=" " >
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                           <div class="input-group-text">Value</div>
                         </div>
-                        <input type="text" class="form-control" id="jina" name="jina" placeholder=" ">
+                        <input type="text" class="form-control" id="value" name="value" placeholder=" ">
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                           <div class="input-group-text">Price</div>
                         </div>
-                        <input type="email" class="form-control" id="email" name="email" placeholder=" " >
+                        <input type="text" class="form-control" id="amount" name="amount" placeholder=" " >
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                           <div class="input-group-text">Targeted User</div>
                         </div>
-                        <input type="text" class="form-control" id="pwd" name="pwd" placeholder=" ">
+                        <select class="form-control" class="form-control" id="target_user" name="target_user" placeholder=" ">
+                              <option value= "Wakala">Wakala or Middle men</option>
+                             <option value= "Customer">End User</option>
+                             <option value= "Offer">Offer</option>
+                        </select>
                       </div>
     
                       <button type="submit" class="btn btn-primary mb-2" id='sajili'>Save</button>
