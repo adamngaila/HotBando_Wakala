@@ -15,5 +15,7 @@ class VifurushiWallet extends Model
         'Credit_vifurushi',
         'Vifurushi_balance',
         'Offer_Vifurushi',
+        'expiredate',
+        'kifurushi_id',
     ];
 }

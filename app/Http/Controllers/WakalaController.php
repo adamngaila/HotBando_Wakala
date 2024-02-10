@@ -81,6 +81,15 @@ class WakalaController extends Controller
         'error'=>$error,
         ]);
     }
+
+
+    public function show_vifurushi(){
+        
+        $user_id = Auth::user()->User_id;
+       
+        return view('wakalaViews.vifurushi',compact('user_id'));
+    }
+
     
 Public function generate_customerid($size)
 {

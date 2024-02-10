@@ -49,8 +49,8 @@
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="pages/icons/simple-line-icons.html">
-                <span class="menu-title">Connect   </span>
+              <a class="nav-link" href="wakala_vifurushi">
+                <span class="menu-title">Vifurushi   </span>
                 <i class="icon-feed menu-icon">  </i>
               </a>
             </li>

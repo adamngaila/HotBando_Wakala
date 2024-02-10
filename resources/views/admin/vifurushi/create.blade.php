@@ -30,9 +30,9 @@
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
-                          <div class="input-group-text">Price</div>
+                          <div class="input-group-text">Price %</div>
                         </div>
-                        <input type="text" class="form-control" id="amount" name="amount" placeholder=" " >
+                        <input type="text" class="form-control" id="amount_perc" name="amount_perc" placeholder=" " >
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">

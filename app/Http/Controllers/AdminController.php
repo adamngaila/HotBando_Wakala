@@ -171,11 +171,12 @@ class AdminController extends Controller
     }
     public function admin_create_vivfurushi(Request $request)
     {
+        $amount = ((100-($request->amount_perc))/100)*($request->value);
         try{
         $kifurushi_Kipya = vifurushi::create([
           'Description' => $request->Description,
           'value' => $request->value,
-          'amount' => $request->amount,
+          'amount' => $amount,
           'target_user' => $request->target_user,
           'expiration' => $request->expiration,
           'status' => 'Active',
