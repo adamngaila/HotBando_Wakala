@@ -39,7 +39,7 @@
                         <div class="input-group-prepend">
                           <div class="input-group-text">WAKALA ID</div>
                         </div>
-                        <input type="text" class="form-control" id="user_id" name="user_id" placeholder="{{$wakala_profile->Wakala_code}}" readonly>
+                        <input type="text" class="form-control" id="user_id" name="user_id" value="{{$wakala_profile->Wakala_code}}" readonly>
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
