@@ -42,12 +42,12 @@
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
-                          <div class="input-group-text">Password</div>
+                          <div class="input-group-text">AMOUNT</div>
                         </div>
-                        <input type="text" class="form-control" id="pwd" name="pwd" placeholder=" ">
+                        <input type="text" class="form-control" id="amnt" name="amnt" placeholder=" ">
                       </div>
     
-                      <button type="submit" class="btn btn-primary mb-2" id='sajili'>Sajili</button>
+                      <button type="submit" class="btn btn-primary mb-2" id='sajili'>NUNUA</button>
                      
                     </form>
                   </div>
