@@ -116,7 +116,7 @@
             $.ajax({
             
               url: '/get-kifurushi-price',
-              type: 'post',
+              type: 'POST',
               data: {
               
                 kifurushiId: kifurushiId
@@ -126,8 +126,8 @@
               },
               success: function(response) {
                 document.getElementById('price').value = response.data.price;
-                }error: function(error) {
-                    console.error('Error fetching kifurushi price: ' + error);
+                }error: function(response) {
+                    console.error('Error fetching kifurushi price: ' +response.error);
                 }
             });
            
