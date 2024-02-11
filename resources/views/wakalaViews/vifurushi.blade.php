@@ -107,6 +107,7 @@
     @section('script')
    
     <script>
+      import axios from 'axios';
     document.getElementById('vifurushi_list').addEventListener('change', function() {
         var kifurushiId = this.value;
         if (kifurushiId) {
