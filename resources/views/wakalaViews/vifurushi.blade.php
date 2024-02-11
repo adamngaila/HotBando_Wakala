@@ -22,7 +22,7 @@
                         </div>
                         <select class="form-control" class="form-control" id="vifurushi_list" name="vifurshi_list" placeholder="--chagua vifurushi -- ">
                         @foreach($vifurushi_list as $kifurushi)
-                        @endforeach
+
                         <option value="{{ $kifurushi->id }}" >{{ $kifurushi->Description}}, {{ $kifurushi->value}} , 'price = Tzs", {{ $kifurushi->amount}} </option>
                         @endforeach
                       </select>     
