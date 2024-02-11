@@ -105,7 +105,7 @@
 
     @endsection
     @section('script')
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+   
     <script>
       
     document.getElementById('vifurushi_list').addEventListener('change', function() {
@@ -118,11 +118,9 @@
               type: 'POST',
               data: {
               
-                kifurushiId: kifurushiId
+                kifurushiId: kifurushiId,
               },
-              headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-              },
+            
               success: function(response) {
                 document.getElementById('price').value = response.data.price;
                 }error: function(response) {
