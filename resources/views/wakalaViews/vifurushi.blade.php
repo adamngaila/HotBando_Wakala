@@ -18,7 +18,7 @@
   
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
-                          <div class="input-group-text">Package</div>
+                          <div class="input-group-text font-weight-semibold">Package</div>
                         </div>
                         <select class="form-control" class="form-control" id="vifurushi_list" name="vifurshi_list" placeholder="--chagua vifurushi -- ">
                         <option value="">--select----</option>
@@ -31,7 +31,7 @@
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
-                          <div class="input-group-text-blue">PRICE</div>
+                          <div class="input-group-text">PRICE</div>
                         </div>
                         <input type="text" class="form-control" id="price" name="price" placeholder=" " readonly>
                       </div>
