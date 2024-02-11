@@ -23,7 +23,7 @@
                         <select class="form-control" class="form-control" id="vifurushi_list" name="vifurshi_list" placeholder="--chagua vifurushi -- ">
                         @foreach($vifurushi_list as $kifurushi)
 
-                        <option value="{{ $kifurushi->id }}" >{{ $kifurushi->Description}}, {{ $kifurushi->value}} , 'price = Tzs", {{ $kifurushi->amount}} </option>
+                        <option value="{{ $kifurushi->id }}" >{{ $kifurushi->Description}} with {{ $kifurushi->value}} credits at price of Tzs {{ $kifurushi->amount}} </option>
                         @endforeach
                       </select>     
 
