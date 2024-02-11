@@ -113,13 +113,24 @@
         var kifurushiId = this.value;
         if (kifurushiId) {
             // Make AJAX request to get product price
-            axios.get('get-kifurushi-price/' + kifurushiId)
-                .then(function(response) {
-                    document.getElementById('price').value = response.data.price;
-                })
-                .catch(function(error) {
+            $.ajax({
+            
+              url: '/get-kifurushi-price',
+              type: 'post',
+              data: {
+              
+                kifurushiId: kifurushiId
+              },
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              success: function(response) {
+                document.getElementById('price').value = response.data.price;
+                }error: function(error) {
                     console.error('Error fetching kifurushi price: ' + error);
-                });
+                }
+            });
+           
         } else {
             // Reset the price textbox if no product is selected
             document.getElementById('price').value = '';

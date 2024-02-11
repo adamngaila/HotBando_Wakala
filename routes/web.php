@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::any('/wakala_wateja',[WakalaController::class,'show_customers'])->name('wakala_wateja');
     Route::any('/wakala_mauzo',[WakalaController::class,'show_mauzo'])->name('wakala_mauzo');
     Route::any('/wakala_vifurushi',[WakalaController::class,'show_vifurushi'])->name('wakala_vifurushi');
-    Route::get('/get-kifurushi-price/{kifurushiId}', [VifurushiController::class,'getKifurushiPrice']);
+    Route::get('/get-kifurushi-price', [VifurushiController::class,'getKifurushiPrice']);
 
 
 
