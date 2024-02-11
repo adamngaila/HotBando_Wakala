@@ -113,7 +113,7 @@
         var kifurushiId = this.value;
         if (kifurushiId) {
             // Make AJAX request to get product price
-            axios.get('/get-kifurushi-price/' + kifurushiId)
+            axios.get('get-kifurushi-price/' + kifurushiId)
                 .then(function(response) {
                     document.getElementById('price').value = response.data.price;
                 })
