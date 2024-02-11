@@ -21,6 +21,7 @@
                           <div class="input-group-text">Package</div>
                         </div>
                         <select class="form-control" class="form-control" id="vifurushi_list" name="vifurshi_list" placeholder="--chagua vifurushi -- ">
+                        <option value="">--select----</option>
                         @foreach($vifurushi_list as $kifurushi)
 
                         <option value="{{ $kifurushi->id }}" >{{ $kifurushi->Description}} with {{ $kifurushi->value}} credits at price of Tzs {{ $kifurushi->amount}} </option>
@@ -105,29 +106,23 @@
 
     @endsection
     @section('script')
-   
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <script>
       
     document.getElementById('vifurushi_list').addEventListener('change', function() {
         var kifurushiId = this.value;
         if (kifurushiId) {
             // Make AJAX request to get product price
-            $.ajax({
-            
-              url: '/get-kifurushi-price',
-              type: 'POST',
-              data: {
-              
-                kifurushiId: kifurushiId,
-              },
-            
-              success: function(response) {
+          
+            axios.get('get-kifurushi-price/' + kifurushiId)
+            .then( function(response) {
                 document.getElementById('price').value = response.data.price;
-                }error: function(response) {
+              })
+                .catch(function(error) {
                     console.error('Error fetching kifurushi price: ' +response.error);
-                }
-            });
-           
+                
+              });
         } else {
             // Reset the price textbox if no product is selected
             document.getElementById('price').value = '';

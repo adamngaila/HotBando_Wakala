@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Http;
 
 class VifurushiController extends Controller
 {
-    public function getKifurushiPrice(Request $kifurushi_Id) {
+    public function getKifurushiPrice($kifurushiId) {
 
 
-        $kifurushi = vifurushi::find($kifurushi_Id->kifurushiId);
+        $kifurushi = vifurushi::find($kifurushiId);
         if ($kifurushi) {
             return response()->json(['price' => $kifurushi->amount]);
         } else {

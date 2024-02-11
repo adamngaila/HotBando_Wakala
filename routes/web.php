@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\WakalaController;
 use App\Http\Controllers\TransactionController;
-
+use App\Http\Controllers\VifurushiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::any('/wakala_wateja',[WakalaController::class,'show_customers'])->name('wakala_wateja');
     Route::any('/wakala_mauzo',[WakalaController::class,'show_mauzo'])->name('wakala_mauzo');
     Route::any('/wakala_vifurushi',[WakalaController::class,'show_vifurushi'])->name('wakala_vifurushi');
-    Route::any('/get-kifurushi-price', [VifurushiController::class,'getKifurushiPrice'])->name('get-kifurushi-price');
+    Route::any('/get-kifurushi-price/{kifurushiId}', [VifurushiController::class,'getKifurushiPrice']);
 
 
 
