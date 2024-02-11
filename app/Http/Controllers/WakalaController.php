@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Models\WakalaRegister;
 use App\Models\SalesBook;
+use App\Models\vifurushi;
 use App\Models\Transactions;
 use App\Models\CustomerAccounts;
 use Illuminate\Support\Facades\DB;
@@ -86,8 +87,9 @@ class WakalaController extends Controller
     public function show_vifurushi(){
         
         $user_id = Auth::user()->User_id;
+        $vifurushi_list = vifurushi::where('target_user','Wakala')->where('status','Active')->get();
        
-        return view('wakalaViews.vifurushi',compact('user_id'));
+        return view('wakalaViews.vifurushi',compact('user_id','vifurushi_list'));
     }
 
     

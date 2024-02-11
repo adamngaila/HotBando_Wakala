@@ -20,7 +20,13 @@
                         <div class="input-group-prepend">
                           <div class="input-group-text">Package</div>
                         </div>
-                        <input type="text" class="form-control" id="simu" name="simu" placeholder=" " >
+                        <select class="form-control" class="form-control" id="vifurushi_list" name="vifurshi_list" placeholder="--chagua vifurushi -- ">
+                        @foreach($vifurushi_list as $kifurushi)
+                        @endforeach
+                        <option value="{{ $kifurushi->id }}" >{{ $kifurushi->Description}}, {{ $kifurushi->value}} , 'price = Tzs", {{ $kifurushi->amount}} </option>
+                        @endforeach
+                      </select>     
+
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
