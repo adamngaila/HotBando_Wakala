@@ -32,13 +32,13 @@
                         <div class="input-group-prepend">
                           <div class="input-group-text">PRICE</div>
                         </div>
-                        <input type="text" class="form-control" id="price" name="price" placeholder=" ">
+                        <input type="text" class="form-control" id="price" name="price" placeholder=" " readonly>
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                           <div class="input-group-text">WAKALA ID</div>
                         </div>
-                        <input type="text" class="form-control" id="user_id" name="user_id" placeholder="{{$wakala_profile->Wakala_code}}" disabled>
+                        <input type="text" class="form-control" id="user_id" name="user_id" placeholder="{{$wakala_profile->Wakala_code}}" readonly>
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
@@ -106,6 +106,23 @@
     @endsection
     @section('script')
    
-    
+    <script>
+    document.getElementById('vifurushi_list').addEventListener('change', function() {
+        var kifurushiId = this.value;
+        if (kifurushiId) {
+            // Make AJAX request to get product price
+            axios.get('/get-kifurushi-price/' + kifurushiId)
+                .then(function(response) {
+                    document.getElementById('price').value = response.data.price;
+                })
+                .catch(function(error) {
+                    console.error('Error fetching kifurushi price: ' + error);
+                });
+        } else {
+            // Reset the price textbox if no product is selected
+            document.getElementById('price').value = '';
+        }
+    });
+</script>
 
  @endsection
