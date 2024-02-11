@@ -30,15 +30,15 @@
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
-                          <div class="input-group-text">Jina</div>
+                          <div class="input-group-text">PRICE</div>
                         </div>
-                        <input type="text" class="form-control" id="jina" name="jina" placeholder=" ">
+                        <input type="text" class="form-control" id="price" name="price" placeholder=" ">
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
-                          <div class="input-group-text">email</div>
+                          <div class="input-group-text">WAKALA ID</div>
                         </div>
-                        <input type="email" class="form-control" id="email" name="email" placeholder=" " >
+                        <input type="text" class="form-control" id="user_id" name="user_id" placeholder="{{$wakala_profile->Wakala_code}}" disabled>
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
