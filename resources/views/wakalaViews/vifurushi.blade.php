@@ -105,9 +105,10 @@
 
     @endsection
     @section('script')
-   
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <script>
-      import axios from 'axios';
+      
     document.getElementById('vifurushi_list').addEventListener('change', function() {
         var kifurushiId = this.value;
         if (kifurushiId) {
