@@ -13,7 +13,7 @@
                   <div class="card-body">
                     <h4 class="card-title">NUNUA VIFURUSHI</h4>
                    
-                    <form class="form-inline" data-action="" method ="POST" enctype="multipart/form-data" id="add-mteja-form">
+                    <form class="form-inline" data-action="{{ route('purchase_kifurushi') }}" method ="POST" enctype="multipart/form-data" id="add-mteja-form">
                     @csrf
   
                       <div class="input-group mb-2 mr-sm-2">
@@ -43,14 +43,22 @@
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
-                          <div class="input-group-text">AMOUNT</div>
+                          <div class="input-group-text">QTY</div>
                         </div>
-                        <input type="text" class="form-control" id="amnt" name="amnt" placeholder=" ">
+                        <input type="text" class="form-control" id="qty" name="qty" placeholder="1">
                       </div>
     
                       <button type="submit" class="btn btn-primary mb-2" id='sajili'>NUNUA</button>
                      
                     </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 grid-margin stretch-card" style='display:none;' id="pesapal_payment">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">MALIPO</h4>
+                   
                   </div>
                 </div>
               </div>
@@ -107,27 +115,7 @@
     @endsection
     @section('script')
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ asset('js/vifurushi.js') }}" defer></script>
 
-    <script>
-      
-    document.getElementById('vifurushi_list').addEventListener('change', function() {
-        var kifurushiId = this.value;
-        if (kifurushiId) {
-            // Make AJAX request to get product price
-          
-            axios.get('get-kifurushi-price/' + kifurushiId)
-            .then( function(response) {
-                document.getElementById('price').value = response.data.price;
-              })
-                .catch(function(error) {
-                    console.error('Error fetching kifurushi price: ' +response.error);
-                
-              });
-        } else {
-            // Reset the price textbox if no product is selected
-            document.getElementById('price').value = '';
-        }
-    });
-</script>
-
+    
  @endsection
