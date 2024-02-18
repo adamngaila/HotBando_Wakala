@@ -26,6 +26,9 @@ class VifurushiController extends Controller
 
     }
     Public function purchase_kifurushi_process(Request $request){
+        $request->validate([
+            'qty' => ['required']
+        ]);
         $Id = $request->user_id;
         $Tcode = generate_transactioncode(8);
         $Amount = $request->price*$request->qty;
