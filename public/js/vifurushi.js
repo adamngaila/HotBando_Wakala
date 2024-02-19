@@ -16,7 +16,7 @@ $(document).ready(function(){
         var url = $(this).attr('data-action');
         $.ajax({
 
-            url:  url,
+            url: '/purchase_kifurushi',
             method: 'POST',
              data: new FormData(this),
             dataType: 'JSON',
