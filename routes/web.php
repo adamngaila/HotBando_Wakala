@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\WakalaController;
 use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\VifurushiController;
+use App\Https\Controllers\VifurushiController;
 
 /*
 |--------------------------------------------------------------------------
