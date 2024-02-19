@@ -58,7 +58,7 @@ class VifurushiController extends Controller
         $Id = $request->user_id;
         $Tcode = $this->generate_transactioncode(8);
         $Amount = $request->price*$request->qty;
-        if(Amount >= $request->price)
+        if($Amount >= $request->price)
         {
          $response_url = $this->nitialize_kifurushi_purchase($Id,$Tcode,$Amount);
          if($response_url['status'] == true){
