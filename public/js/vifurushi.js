@@ -1,16 +1,16 @@
 $(document).ready(function(){
     
 
-    var form = '#nunua-package-form';
+    var form_nunua = '#nunua-package-form';
 
  // payment function
     
-    $(form).on('submit', function(event){
+    $(form_nunua).on('submit', function(event){
         event.preventDefault();
         
         $.ajax({
 
-            url:'/purchase_kifurushi',
+            url:"/purchase_kifurushi",
             method: 'POST',
             data: new FormData(this),
            dataType: 'JSON',

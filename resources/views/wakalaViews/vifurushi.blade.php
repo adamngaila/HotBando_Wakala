@@ -14,7 +14,7 @@
                     <h4 class="card-title">NUNUA VIFURUSHI</h4>
                    
                     <form class="form-inline" data-action="{{ route('purchase_kifurushi') }}" method ="POST" enctype="multipart/form-data" id="nunua-package-form">
-                    @csrf
+                     @csrf
   
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
