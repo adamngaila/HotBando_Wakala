@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use App\Models\WakalaRegister;
 use App\Models\VifurushiWallet;
 use Closure;
