@@ -1,10 +1,4 @@
 $(document).ready(function(){
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-
-    });
     
 
     var form = '#nunua-package-form';
@@ -18,14 +12,14 @@ $(document).ready(function(){
 
             url:'/purchase_kifurushi',
             method: 'POST',
-             data: new FormData(this),
-            dataType: 'JSON',
-            contentType: false,
-            cache: false,
-            processData: false,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-              },
+            data: new FormData(this),
+           dataType: 'JSON',
+           contentType: false,
+           cache: false,
+           processData: false,
+           headers: {
+             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           },
             success:function(response)
             {
                 if(response.status == 'good'){
