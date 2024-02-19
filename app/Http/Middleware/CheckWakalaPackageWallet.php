@@ -19,7 +19,7 @@ class CheckWakalaPackageWallet
      */
     public function handle(Request $request, Closure $next)
     {
-        $user_id = Auth::user()->User_id;
+        $user_id = auth()->User_id();
         $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
         $kifurushi_wallet = VifurushiWallet::where('Wakala_code',$wakala_profile->Wakala_code)->first();
         if(!$kifurushi_wallet){
