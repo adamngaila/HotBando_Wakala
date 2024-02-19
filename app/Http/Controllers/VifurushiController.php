@@ -24,22 +24,22 @@ class VifurushiController extends Controller
         }
     }
     public function initialize_kifurushi_purchase($Id,$Tcode,$Amount){
-        $url = 'https://api.loanpage.co.tz/buyPackageWakala?Id=';
-        $url.=$Id;
-        $url.="&TCode=";
-        $url.=$Tcode;
-        $url.="&Amount=";
-        $url.=$Amount;
+       
+        $url = 'https://api.loanpage.co.tz/buyPackageWakala';
 
-        $response = http::POST($url);
+        $response = http::post($url,[
+            'Id'=>$Id,
+            'TCode'=>$Tcode,
+            'Amount'=>$Amount,
+        ]);
 
         if ($response)
         {
           
             $data = $response->json();
             $jibu = [
-              'status'=> $response->done,
-              'payment_url'=>$response->redirect_url,
+              'status'=> $data['done'],
+              'payment_url'=> $data['redirect_url'],
               
           ];
             return  $jibu;
