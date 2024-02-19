@@ -56,7 +56,7 @@ class VifurushiController extends Controller
             'qty' => ['required']
         ]);
         $Id = $request->user_id;
-        $Tcode = generate_transactioncode(8);
+        $Tcode = $this->generate_transactioncode(8);
         $Amount = $request->price*$request->qty;
         if(Amount >= $request->price)
         {
