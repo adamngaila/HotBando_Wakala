@@ -1,3 +1,52 @@
+$(document).ready(function(){
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+
+    });
+
+    var form = '#nunua-package-form';
+
+ // payment function
+    
+    $(form).on('submit', function(event){
+        event.preventDefault();
+        var url = $(this).attr('data-action');
+        $.ajax({
+
+            url:  url,
+            method: 'POST',
+             data: new FormData(this),
+            dataType: 'JSON',
+            contentType: false,
+            cache: false,
+            processData: false,
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success:function(response)
+            {
+                if(response.status == 'good'){
+                   
+                  //  $(form_mteja).trigger("reset");
+                  
+                    alert('Payment process initiated, Transaction Id:'+ response.tcode +"for package of "+ response.package +" MBPS");
+                    $("#pesapal_payment").show();
+                    document.getElementById('jina').src = response.redirect_url;
+                }
+               if(response.status == 'good'){
+                    alert(response.status);
+                    console.log(response.status);
+                }
+            }, error: function(response) {
+            }
+        });
+               
+    });
+
+//vifurushi list function
 document.getElementById('vifurushi_list').addEventListener('change', function() {
     var kifurushiId = this.value;
     if (kifurushiId) {
@@ -16,3 +65,4 @@ document.getElementById('vifurushi_list').addEventListener('change', function() 
         document.getElementById('price').value = '';
     }
 });
+})

@@ -6,6 +6,8 @@ use Illuminate\Auth\Events\Registered;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\vifurushi;
+use App\Models\VifurushiTransaction;
+use App\Models\VifurushiWallet;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
@@ -22,7 +24,31 @@ class VifurushiController extends Controller
         }
     }
     public function initialize_kifurushi_purchase($Id,$Tcode,$Amount){
-        $url = '';
+        $url = 'https://api.loanpage.co.tz/buyPackageWakala?Id=';
+        $url.=$Id;
+        $url.="&TCode=";
+        $url.=$Tcode;
+        $url.="&Amount=";
+        $url.=$Amount;
+
+        $response = Http::POST($url);
+
+        if ($response)
+        {
+          
+            $data = $response->json();
+            $jibu = [
+              'status'=>$data['done'],
+              'payment_url'=>$data['redirect_url'],
+              
+          ];
+            return  $jibu;
+  
+        }else{
+        
+        $jibu = ['status'=>false,];
+          return $jibu;
+    }
 
     }
     Public function purchase_kifurushi_process(Request $request){
@@ -34,7 +60,29 @@ class VifurushiController extends Controller
         $Amount = $request->price*$request->qty;
         if(Amount >= $request->price)
         {
-        nitialize_kifurushi_purchase($Id,$Tcode,$Amount);
+         $response_url = $this->nitialize_kifurushi_purchase($Id,$Tcode,$Amount);
+         if($response_url['status'] == true){
+            $vifurushi_T = VifurushiTransaction::create([
+                'Transaction_id'=>$Tcode,
+                'Wakala_code'=> $Id,
+                'Transaction_type'=>"Purchase",
+                'Value'=> $request->value,
+                'Amount'=> $Amount,
+                'kifurushi_id'=>$request->vifurushi_list,
+                'Transaction_status'=>"Successiful",
+            ]);
+            return response()->json(['status'=>'good',
+            'tcode'=>$Tcode,
+            'package'=>$request->value,
+             'redirect_url'=>$response_url['payment_url'],
+        ]);
+
+          
+         }else{
+            return response()->json(['status'=> 'bad',
+            'tcode'=>$Tcode,
+        ]);
+           }
         }
 
     }
@@ -62,5 +110,16 @@ class VifurushiController extends Controller
         return $test;
 
 }
+
+ /* $vifurushi_W = VifurushiWallet::where('Wakala_code',$Id)->update([
+                'Purchased_vifurushi',
+                'Sold_vifurushi',
+                'Credit_vifurushi',
+                'Vifurushi_balance',
+                'Offer_Vifurushi',
+                'expiredate',
+                'kifurushi_id',
+            ]);
+            */
 
 }

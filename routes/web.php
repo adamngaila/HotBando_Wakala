@@ -31,7 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::any('/local_customer_signup',[WakalaController::class,'create_local_customer'])->name('local_customer_signup');
     Route::any('/wakala_wateja',[WakalaController::class,'show_customers'])->name('wakala_wateja');
     Route::any('/wakala_mauzo',[WakalaController::class,'show_mauzo'])->name('wakala_mauzo');
-    Route::any('/wakala_vifurushi',[WakalaController::class,'show_vifurushi'])->name('wakala_vifurushi');
+
+    Route::middleware('CheckWakalaPackageWallet')->group(function () {
+         Route::any('/wakala_vifurushi',[WakalaController::class,'show_vifurushi'])->name('wakala_vifurushi');
+    });
     Route::any('/get-kifurushi-price/{kifurushiId}', [VifurushiController::class,'getKifurushiPrice']);
     Route::any('/purchase_kifurushi', [VifurushiController::class,'purchase_kifurushi_process'])->name('purchase_kifurushi');
 

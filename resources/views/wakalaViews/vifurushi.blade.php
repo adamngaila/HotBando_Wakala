@@ -13,7 +13,7 @@
                   <div class="card-body">
                     <h4 class="card-title">NUNUA VIFURUSHI</h4>
                    
-                    <form class="form-inline" data-action="{{ route('purchase_kifurushi') }}" method ="POST" enctype="multipart/form-data" id="add-mteja-form">
+                    <form class="form-inline" data-action="{{ route('purchase_kifurushi') }}" method ="POST" enctype="multipart/form-data" id="nunua-package-form">
                     @csrf
   
                       <div class="input-group mb-2 mr-sm-2">
@@ -47,6 +47,7 @@
                         </div>
                         <input type="text" class="form-control" id="qty" name="qty" placeholder="1">
                       </div>
+                      <input type="hidden" class="form-control" id="value" name="value" value="{{ $kifurushi->value}}">
     
                       <button type="submit" class="btn btn-primary mb-2" id='sajili'>NUNUA</button>
                      
@@ -58,7 +59,8 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">MALIPO</h4>
-                   
+                    <iframe src="etricia.mauzosheet.com" width="100%" height="300" style="border:none;" id="pesapaypage" name="pesapaypage">
+                  </iframe>
                   </div>
                 </div>
               </div>
