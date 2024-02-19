@@ -38,8 +38,8 @@ class VifurushiController extends Controller
           
             $data = $response->json();
             $jibu = [
-              'status'=>$data[0],
-              'payment_url'=>$data[1],
+              'status'=> $response["done"],
+              'payment_url'=>$response["redirect_url"],
               
           ];
             return  $jibu;
