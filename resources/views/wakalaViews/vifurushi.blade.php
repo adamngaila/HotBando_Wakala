@@ -49,7 +49,7 @@
                       </div>
                       <input type="hidden" class="form-control" id="value" name="value" value="{{ $kifurushi->value}}">
     
-                      <button type="submit" class="btn btn-primary mb-2" id='sajili'>NUNUA</button>
+                      <button type="submit" class="btn btn-primary mb-2" id='nunua'>NUNUA</button>
                      
                     </form>
                   </div>

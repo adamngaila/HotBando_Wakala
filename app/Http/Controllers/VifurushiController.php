@@ -31,7 +31,7 @@ class VifurushiController extends Controller
         $url.="&Amount=";
         $url.=$Amount;
 
-        $response = Http::POST($url);
+        $response = http::POST($url);
 
         if ($response)
         {
