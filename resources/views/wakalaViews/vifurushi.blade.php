@@ -59,7 +59,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">MALIPO</h4>
-                    <iframe src="etricia.mauzosheet.com" width="100%" height="300" style="border:none;" id="pesapaypage" name="pesapaypage">
+                    <iframe  width="100%" height="300" style="border:none;" id="pesapaypage" >
                   </iframe>
                   </div>
                 </div>

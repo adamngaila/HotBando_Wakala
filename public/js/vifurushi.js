@@ -31,9 +31,9 @@ $(document).ready(function(){
                   //  $(form_mteja).trigger("reset");
                   
                     alert('Payment process initiated, Transaction Id:'+ response.tcode +"for package of "+ response.package +" MBPS");
-                    
-                    document.getElementById('jina').src = response.redirect_url;
                     $("#pesapal_payment").show();
+                    
+                    $('#pesapaypage').attr('src', response.redirect_url);
                    
                 }
                if(response.status == 'good'){
