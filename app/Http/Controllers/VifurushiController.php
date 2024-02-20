@@ -10,6 +10,7 @@ use App\Models\VifurushiTransaction;
 use App\Models\VifurushiWallet;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Carbon;
 
 class VifurushiController extends Controller
 {
@@ -56,7 +57,9 @@ class VifurushiController extends Controller
             'qty' => ['required']
         ]);
         $Id = $request->user_id;
+        $current = Carbon::now();
         $Tcode = $this->generate_transactioncode(7);
+        $Tcode.= $current;
         $Amount = $request->price*$request->qty;
         if($Amount >= $request->price)
         {
