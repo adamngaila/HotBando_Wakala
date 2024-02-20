@@ -17,7 +17,7 @@ class CreateVifurushiTransactionsTable extends Migration
             $table->id();
             $table->string('Transaction_id')->unique();
             $table->string('Wakala_code')->nullable();
-            $table->string('Transaction_type')->unique();
+            $table->string('Transaction_type')->nullable();
             $table->string('Value')->unique();
             $table->string('Amount')->nullable();
             $table->string('Transaction_request_id')->nullable();
