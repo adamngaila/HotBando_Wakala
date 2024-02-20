@@ -31,7 +31,7 @@ $(document).ready(function(){
                     alert('Payment process initiated, Transaction Id:'+ response.tcode +"for package of "+ response.package +" MBPS");
                     $("#pesapal_payment").show();
                     document.getElementById('jina').src = response.redirect_url;
-                    alert(response);
+                    alert(response.status);
                 }
                if(response.status == 'good'){
                     alert(response.status);
