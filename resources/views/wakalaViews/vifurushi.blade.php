@@ -116,6 +116,7 @@
 
     @endsection
     @section('script')
-    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script src="{{ asset('js/vifurushi.js') }}" defer></script>
     
  @endsection
