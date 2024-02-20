@@ -72,7 +72,7 @@ class VifurushiController extends Controller
                 'Value'=> $request->value,
                 'Amount'=> $Amount,
                 'kifurushi_id'=>$request->vifurushi_list,
-                'Transaction_status'=>"Successiful",
+                'Transaction_status'=>"Pending",
             ]);
             return response()->json(['status'=>'good',
             'tcode'=>$Tcode,
