@@ -24,16 +24,18 @@ $(document).ready(function(){
            
             success:function(response)
             {
-                alert('status'+response.redirect_url);
                 
+                var redirectUrl = response.redirect_url;
+
                 if(response.status == 'good'){
                    
                   //  $(form_mteja).trigger("reset");
-                  
+                  alert(redirectUrl);
                     alert('Payment process initiated, Transaction Id:'+ response.tcode +"for package of "+ response.package +" MBPS");
+                    
+                    $('#pesapaypage').attr('src',  redirectUrl);
                     $("#pesapal_payment").show();
                     
-                    $('#pesapaypage').attr('src', response.redirect_url);
                    
                 }
                if(response.status == 'good'){
