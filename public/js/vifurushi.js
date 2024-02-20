@@ -29,9 +29,10 @@ $(document).ready(function(){
                   //  $(form_mteja).trigger("reset");
                   
                     alert('Payment process initiated, Transaction Id:'+ response.tcode +"for package of "+ response.package +" MBPS");
-                    $("#pesapal_payment").show();
+                    alert(response.response.redirect_url);
                     document.getElementById('jina').src = response.redirect_url;
-                    alert(response.status);
+                    $("#pesapal_payment").show();
+                   
                 }
                if(response.status == 'good'){
                     alert(response.status);
