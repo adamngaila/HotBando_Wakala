@@ -24,7 +24,7 @@ $(document).ready(function(){
            
             success:function(response)
             {
-                alert(response.status);
+                alert('status'+response.status);
                 
                 if(response.status == 'good'){
                    
