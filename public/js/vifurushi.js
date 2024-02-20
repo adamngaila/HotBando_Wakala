@@ -24,12 +24,14 @@ $(document).ready(function(){
            
             success:function(response)
             {
+                alert(response.redirect_url);
+                
                 if(response.status == 'good'){
                    
                   //  $(form_mteja).trigger("reset");
                   
                     alert('Payment process initiated, Transaction Id:'+ response.tcode +"for package of "+ response.package +" MBPS");
-                    alert(response.redirect_url);
+                    
                     document.getElementById('jina').src = response.redirect_url;
                     $("#pesapal_payment").show();
                    
