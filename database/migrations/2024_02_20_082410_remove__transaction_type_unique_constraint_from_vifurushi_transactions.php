@@ -14,7 +14,7 @@ class RemoveTransactionTypeUniqueConstraintFromVifurushiTransactions extends Mig
     public function up()
     {
         Schema::table('vifurushi_transactions', function (Blueprint $table) {
-            $table->dropUnique('transaction_type');
+            $table->dropUnique('vifurushi_transactions_transaction_type_unique');
         });
     }
 
