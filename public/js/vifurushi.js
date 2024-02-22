@@ -30,18 +30,31 @@ $(document).ready(function(){
                 if(response.status == 'good'){
                    
                   //  $(form_mteja).trigger("reset");
-                  alert(redirectUrl);
+            
                     alert('Payment process initiated, Transaction Id:'+ response.tcode +"for package of "+ response.package +" MBPS");
                     
                     $('#pesapaypage').attr('src',  redirectUrl);
+
                     $("#pesapal_payment").show();
-                    
+                    window.parent.postMessage({ url: window.location.href }, '*');
                    
                 }
-               if(response.status == 'good'){
+               if(response.status == 'bad'){
                     alert(response.status);
                     console.log(response.status);
                 }
+                window.addEventListener('message', function(event) {
+                    // Check if the message is from the iframe and contains the new URL
+                    if (event.source === iframe.contentWindow && event.data.url) {
+                        // Handle the new URL here
+                        var newUrl = event.data.url;
+                        alert('New URL in iframe:', newUrl);
+                
+                        // Send a request or perform any action based on the new URL
+                        // Example: Send an AJAX request
+                        
+                    }
+                });
             }, error: function(response) {
             }
         });
