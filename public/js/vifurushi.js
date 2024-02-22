@@ -4,15 +4,24 @@ $(document).ready(function(){
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
       });
-      window.addEventListener('message', function(event) {
-        // Check if the message is from the iframe and contains the URL
-        if (event.source === iframe.contentWindow && event.data.url) {
-            // Handle the URL sent from the iframe
-            var newUrl = event.data.url;
-            console.log('New URL in iframe:', newUrl);
-            // Perform any action based on the new URL
-        }
-    });
+      function showNotification(message) {
+        // Create a div for notification
+        var notification = $('<div>')
+            .addClass('notification')
+            .text(message)
+            .hide();
+
+        // Append notification to body and show with animation
+        $('body').append(notification);
+        notification.fadeIn();
+
+        // Hide notification after 3 seconds
+        setTimeout(function() {
+            notification.fadeOut(function() {
+                $(this).remove();
+            });
+        }, 3000);
+    }
 
     var form_nunua = '#nunua-package-form';
 
@@ -53,7 +62,7 @@ $(document).ready(function(){
                         window.parent.postMessage({ url: newUrl }, '*');
 
                         // Show notification when URL changes
-                       alert('URL in iframe changed: ' + newUrl);
+                        showNotification('URL in iframe changed: ' + newUrl);
                     });
                    
                 }
