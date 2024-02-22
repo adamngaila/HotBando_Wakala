@@ -45,7 +45,16 @@ $(document).ready(function(){
                     $('#pesapaypage').attr('src',  redirectUrl);
 
                     $("#pesapal_payment").show();
-                    window.parent.postMessage({ url: window.location.href }, '*');
+
+                    $('#pesapaypage').on('load', function() {
+                        var newUrl = $(this).attr('src');
+                        console.log('New URL in iframe:', newUrl);
+                        // Send a message to the parent window with the new URL
+                        window.parent.postMessage({ url: newUrl }, '*');
+
+                        // Show notification when URL changes
+                       alert('URL in iframe changed: ' + newUrl);
+                    });
                    
                 }
                if(response.status == 'bad'){
