@@ -58,10 +58,10 @@ $(document).ready(function(){
                     $('#pesapaypage').on('load', function() {
                         var newUrl = $(this).attr('src');
                         console.log('New URL in iframe:', newUrl);
-                        // Send a message to the parent window with the new URL
+                        alert('New URL in iframe:', newUrl);
+  
                         window.parent.postMessage({ url: newUrl }, '*');
 
-                        // Show notification when URL changes
                         showNotification('URL in iframe changed: ' + newUrl);
                     });
                    
