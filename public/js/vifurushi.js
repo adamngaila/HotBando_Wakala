@@ -4,6 +4,15 @@ $(document).ready(function(){
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
       });
+      window.addEventListener('message', function(event) {
+        // Check if the message is from the iframe and contains the URL
+        if (event.source === iframe.contentWindow && event.data.url) {
+            // Handle the URL sent from the iframe
+            var newUrl = event.data.url;
+            console.log('New URL in iframe:', newUrl);
+            // Perform any action based on the new URL
+        }
+    });
 
     var form_nunua = '#nunua-package-form';
 
@@ -43,18 +52,7 @@ $(document).ready(function(){
                     alert(response.status);
                     console.log(response.status);
                 }
-                window.addEventListener('message', function(event) {
-                    // Check if the message is from the iframe and contains the new URL
-                    if (event.source === iframe.contentWindow && event.data.url) {
-                        // Handle the new URL here
-                        var newUrl = event.data.url;
-                        alert('New URL in iframe:', newUrl);
-                
-                        // Send a request or perform any action based on the new URL
-                        // Example: Send an AJAX request
-                        
-                    }
-                });
+               
             }, error: function(response) {
             }
         });
