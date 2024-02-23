@@ -12,8 +12,18 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">NUNUA VIFURUSHI</h4>
-                   
-                    <form class="form-inline" data-action="{{ route('purchase_kifurushi') }}" method ="POST" enctype="multipart/form-data" id="nunua-package-form">
+                          @if(session('payment_success'))
+                            <div class="alert alert-success">
+                          {{ session('payment_success') }}
+                          </div>
+                          @endif
+                          @if(session('payment_failed'))
+                          <div class="alert alert-danger" role="alert">
+                          {{ session('payment_failed') }}
+                          </div>
+                        @endif
+                        
+                     <form class="form-inline" data-action="{{ route('purchase_kifurushi') }}" method ="POST" enctype="multipart/form-data" id="nunua-package-form">
                      @csrf
   
                       <div class="input-group mb-2 mr-sm-2">
@@ -82,27 +92,27 @@
                       <thead>
                         <tr>
                       
-                          <th>  # </th>
-                          <th>   DESCRIPTION </th>
-                          <th> SOLD</th>
-                          <th> BALANCE </th>
-                          <th> STATUS </th>
-                           <th> EXPIRATION </th>
+                          <th>Mcode</th>
+                          <th>   Tracking code </th>
+                          <th>Package/th>
+                          <th> Amount </th>
+                          <th> Status </th>
+                           <th> Time </th>
                           
                         </tr>
                       </thead>
                       <tbody>
-                     
+                      @foreach($vifurushi_miamala as $result)
                       <tr>
-                      <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     
+                      <td>{{$result->Transaction_id}}</td>
+                     <td>{{$result->Transaction_request_id}}</td>
+                     <td>{{$result->Value}}</td>
+                     <td>{{$result->Amount}}</td>
+                     <td>{{$result->Transaction_status}}</td>
+                     <td>{{$result->created_at}}</td>
+                    
                     </tr>
-                   
+                    @endforeach
                       </tbody>
                     </table>
                   </div>

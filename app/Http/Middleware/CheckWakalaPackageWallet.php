@@ -8,6 +8,11 @@ use App\Models\VifurushiWallet;
 use Illuminate\Support\Facades\Auth;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+use App\Models\vifurushi;
+use App\Models\VifurushiTransaction;
+
 
 class CheckWakalaPackageWallet
 {
@@ -28,6 +33,23 @@ class CheckWakalaPackageWallet
                 'Wakala_code'=>$wakala_profile->Wakala_code
             ]);
         }
+
+        $sum_purchased_vifurushi = VifurushiTransaction::where('Transaction_status',"Success")
+        ->where('Transaction_type','Purchase')
+        ->where('Wakala_code',$wakala_profile->Wakala_code)
+                ->sum('Value');
+        $sum_sold_vifurushi = VifurushiTransaction::where('Transaction_status',"Success")
+                ->where('Transaction_type','Sale')
+                ->where('Wakala_code',$wakala_profile->Wakala_code)
+                ->sum('Value');
+        $balance = $sum_purchased_vifurushi - $sum_sold_vifurushi;
+
+        VifurushiWallet::where('Wakala_code',$wakala_profile->Wakala_code)->update([
+        'Purchased_vifurushi'=> $sum_purchased_vifurushi,
+        'Sold_vifurushi'=>$sum_sold_vifurushi,
+        'Vifurushi_balance'=>$balance,
+        ]);
+
         return $next($request);
     }
 }

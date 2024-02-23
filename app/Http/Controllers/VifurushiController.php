@@ -11,6 +11,11 @@ use App\Models\VifurushiWallet;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+use App\Models\WakalaRegister;
+
 
 class VifurushiController extends Controller
 {
@@ -41,7 +46,7 @@ class VifurushiController extends Controller
             $jibu = [
               'status'=> $data['done'],
               'payment_url'=> $data['redirect_url'],
-              
+              'order_tracking_id'=>$data['order_tracking_id'],
           ];
             return  $jibu;
   
@@ -61,10 +66,12 @@ class VifurushiController extends Controller
         $Tcode = $this->generate_transactioncode(7);
         $Tcode.= $current;
         $Amount = $request->price*$request->qty;
+      
         if($Amount >= $request->price)
         {
          $response_url = $this->initialize_kifurushi_purchase($Id,$Tcode,$Amount);
          if($response_url['status'] == true){
+            $trans_request_id = $response_url['order_tracking_id'];
             $vifurushi_T = VifurushiTransaction::create([
                 'Transaction_id'=>$Tcode,
                 'Wakala_code'=> $Id,
@@ -72,12 +79,15 @@ class VifurushiController extends Controller
                 'Value'=> $request->value,
                 'Amount'=> $Amount,
                 'kifurushi_id'=>$request->vifurushi_list,
+                'Transaction_request_id'=> $trans_request_id,
                 'Transaction_status'=>"Pending",
+
             ]);
             return response()->json(['status'=>'good',
             'tcode'=>$Tcode,
             'package'=>$request->value,
              'redirect_url'=>$response_url['payment_url'],
+             
         ]);
 
           
@@ -90,6 +100,52 @@ class VifurushiController extends Controller
 
     }
 
+    public function verify_payments($OrderTrackingId){
+        //"call_back_url": "http://192.168.88.253/rensponse?OrderTrackingId=de51f26c-9438-4a6e-9b8a-de54c3bf7dca&OrderMerchantReference=1691489147-0613017308-1000",
+        //https://api.loanpage.co.tz//verifyPayment?OrderTrackingId=d6611536-014f-4417-a802-dd8f4e5334de
+        $url ="https://api.loanpage.co.tz//verifyPayment";
+        $verify = http::post($url,[
+            'OrderTrackingId'=>$OrderTrackingId
+        ]);
+        $user_id = Auth::user()->User_id;
+        $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
+        $vifurushi_list = vifurushi::where('target_user','Wakala')->where('status','Active')->get();
+       
+        $status_code = $verify['status_code'];
+        if(status_code == 1){
+            $payment_success = "Malipo yamefanikiwa. Payments successiful!!";
+            VifurushiTransaction::where('Transaction_request_id',rderTrackingId)->update([
+                'Transaction_status'=>"Success",
+                'Transaction_reference'=>$verify['merchant_reference'],
+            ]);
+           
+            
+        }
+        if(status_code == 0){
+            $payment_failed = "Malipo hayajafanikiwa, jaribu tena. Payments failed try again later!!";
+        }
+
+        $sum_purchased_vifurushi = VifurushiTransaction::where('Transaction_status',"Success")
+                                                            ->where('Transaction_type','Purchase')
+                                                            ->where('Wakala_code',$wakala_profile->Wakala_code)
+                                                            ->sum('Value');
+             $sum_sold_vifurushi = VifurushiTransaction::where('Transaction_status',"Success")
+                                                            ->where('Transaction_type','Sale')
+                                                            ->where('Wakala_code',$wakala_profile->Wakala_code)
+                                                            ->sum('Value');
+            $balance = $sum_purchased_vifurushi - $sum_sold_vifurushi;
+
+            VifurushiWallet::where('Wakala_code',$wakala_profile->Wakala_code)->update([
+                'Purchased_vifurushi'=> $sum_purchased_vifurushi,
+                'Sold_vifurushi'=>$sum_sold_vifurushi,
+                'Vifurushi_balance'=>$balance,
+            ]);
+            $vifurushi_miamala = VifurushiTransaction::where('Wakala_code',$wakala_profile->Wakala_code)->get();
+
+
+        return view('wakalaViews.vifurushi',compact('wakala_profile','vifurushi_list','payment_success','payment_failed','vifurushi_miamala'));
+
+    }
     Public function generate_transactioncode($size)
 {
     $alpha_key ='HBVFR';
