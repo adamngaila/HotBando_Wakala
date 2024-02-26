@@ -34,7 +34,7 @@ class TransactionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function verify_customer($request){
-      $url = 'https://api.loanpage.co.tz/verifyUser?phone=';
+      $url = 'https://api.hotbando.tech/verifyUser?phone=';
       $url .= $request;
 
       $response = Http::get($url);
@@ -56,10 +56,10 @@ class TransactionController extends Controller
   }
   }
   public function create_bando_profile($id,$amount){
-    $url = 'https://api.loanpage.co.tz/addProfile';
+    $url = 'https://api.hotbando.tech/addProfile';
     $pesa = (int)$amount;
    
-    $response = Http::post('https://api.loanpage.co.tz/addProfile',[
+    $response = Http::post('https://api.hotbando.tech/addProfile',[
       'id'=>$id,
       'amount'=>$pesa
   ]);

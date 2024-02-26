@@ -79,7 +79,7 @@ class AdminController extends Controller
     public function show_local_customer_list()
     {
         try{
-        $response = Http::get('https://api.loanpage.co.tz/tino');
+        $response = Http::get('https://api.hotbando.tech/tino');
         $data = $response->json();
 
         
@@ -105,7 +105,7 @@ class AdminController extends Controller
 
     public function sync_customer(){
 
-        $response = Http::get('https://api.loanpage.co.tz/tino');
+        $response = Http::get('https://api.hotbando.tech/tino');
         $data = $response->json();
 
         $preparedData = [];

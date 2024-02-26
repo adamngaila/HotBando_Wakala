@@ -64,7 +64,7 @@ class WakalaController extends Controller
         $email= $request->email;
         $error =null;
 
-           $response = Http::post('https://api.loanpage.co.tz/signup',[
+           $response = Http::post('https://api.hotbando.tech/signup',[
                 "phone"=>$simu,
                 "name"=>$jina,
                 "pwd"=>$pwd,
