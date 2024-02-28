@@ -61,7 +61,7 @@
     function deleteUser(userId) {
         if (confirm('Are you sure you want to delete this user?')) {
             fetch("{{ route('users.destroy', ':id') }}".replace(':id', userId), {
-                method: 'POST',
+                method: 'DELETE',
                 headers: {
         'X-CSRF-TOKEN': '{{ csrf_token() }}',
         'Content-Type': 'application/json',
@@ -71,9 +71,9 @@
             .then(response => {
                 if (response.ok) {
                     document.getElementById('user_' + userId).remove();
-                    alert('User and associated Seller deleted successfully');
+                    alert('User and associated wakala deleted successfully');
                 } else {
-                    alert('Failed to delete user and associated Seller');
+                    alert('Failed to delete user and associated wakala');
                 }
             })
             .catch(error => console.error('Error:', error));
