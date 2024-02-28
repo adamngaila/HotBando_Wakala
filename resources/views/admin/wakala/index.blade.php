@@ -71,9 +71,9 @@
             .then(response => {
                 if (response.ok) {
                     document.getElementById('user_' + userId).remove();
-                    alert('User deleted successfully');
+                    alert('User and associated Seller deleted successfully');
                 } else {
-                    alert('Failed to delete user');
+                    alert('Failed to delete user and associated Seller');
                 }
             })
             .catch(error => console.error('Error:', error));
