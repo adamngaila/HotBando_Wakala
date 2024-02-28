@@ -43,7 +43,7 @@
                      <td>{{$result->Wakala_commission}}</td>
                      <td>{{$result->Jumla_mauzo}}</td>
                      <td>{{$result->wakala_mapato}}</td>
-                     <td><button class="btn btn-icons border-0 p-2" onclick="deleteUser({{$result->User_id}})"><i class="icon-close" onclick="deleteUser({{$result->User_id}})></i></button>
+                     <td><button class="btn btn-icons border-0 p-2" onclick="deleteUser('{{$result->User_id}}')"><i class="icon-close" onclick="deleteUser({{$result->User_id}})></i></button>
                      <button class="btn btn-icons border-0 p-2"><i class="icon-note"></i></button></td>
                   </tr>
                   @endforeach
