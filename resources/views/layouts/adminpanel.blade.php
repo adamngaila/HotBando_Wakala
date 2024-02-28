@@ -82,7 +82,9 @@
     <!-- inject:js -->
     <script src="../../js/off-canvas.js"></script>
     <script src="../../js/misc.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.0/Chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('js/customer.js')  }}"defer ></script>
     <script src="{{ asset('js/sales-ajax.js') }}" defer></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
