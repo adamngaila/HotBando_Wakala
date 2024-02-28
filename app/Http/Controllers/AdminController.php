@@ -219,11 +219,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($user)
     {
         WakalaRegister::where('User_id',$user)->delete();
-        $user->delete();
-
+        User::where('User_id',$user)->delete();
+        
         return response()->json(['message' => 'User deleted successfully'], 200);
     }
 }
