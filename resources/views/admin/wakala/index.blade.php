@@ -63,10 +63,10 @@
             fetch("{{ route('users.destroy', ':id') }}".replace(':id', userId), {
                 method: 'DELETE',
                 headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
+        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    },
             })
             .then(response => {
                 if (response.ok) {
