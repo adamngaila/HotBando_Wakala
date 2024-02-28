@@ -33,7 +33,7 @@
                       </thead>
                       <tbody>
                       @foreach($wakala as $result)
-                  <tr>
+                  <tr  id="user_{{$result->User_id}}">
                      
                      <td>{{$result->User_id}}</td>
                      <td>{{$result->Wakala_code}}</td>
