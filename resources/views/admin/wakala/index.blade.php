@@ -61,7 +61,7 @@
     function deleteUser(userId) {
         if (confirm('Are you sure you want to delete this user?')) {
             fetch("{{ route('users.destroy', ':id') }}".replace(':id', userId), {
-                method: 'DELETE',
+                method: 'POST',
                 headers: {
         'X-CSRF-TOKEN': '{{ csrf_token() }}',
         'Content-Type': 'application/json',
