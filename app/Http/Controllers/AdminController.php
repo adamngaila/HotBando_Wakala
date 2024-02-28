@@ -221,11 +221,7 @@ class AdminController extends Controller
      */
     public function destroy(User $user)
     {
-        $wakala = $user->WakalaRegister;
-
-        if ($wakala) {
-            $wakala->delete();
-        }
+        WakalaRegister::where('User_id',$user)->delete();
         $user->delete();
 
         return response()->json(['message' => 'User deleted successfully'], 200);
