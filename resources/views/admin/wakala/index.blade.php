@@ -43,7 +43,7 @@
                      <td>{{$result->Wakala_commission}}</td>
                      <td>{{$result->Jumla_mauzo}}</td>
                      <td>{{$result->wakala_mapato}}</td>
-                     <td><button class="btn btn-icons border-0 p-2"><i class="icon-close"></i></button>
+                     <td><button class="btn btn-icons border-0 p-2" onclick="deleteUser({{$result->User_id}})"><i class="icon-close"></i></button>
                      <button class="btn btn-icons border-0 p-2"><i class="icon-note"></i></button></td>
                   </tr>
                   @endforeach
@@ -55,4 +55,29 @@
               </div>
          
 
+    @endsection
+    @section('script')
+    <script>
+    function deleteUser(userId) {
+        if (confirm('Are you sure you want to delete this user?')) {
+            fetch("{{ route('users.destroy', ':id') }}".replace(':id', userId), {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('user_' + userId).remove();
+                    alert('User deleted successfully');
+                } else {
+                    alert('Failed to delete user');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    }
+</script>
     @endsection
