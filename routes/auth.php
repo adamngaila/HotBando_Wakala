@@ -67,7 +67,7 @@ Route::middleware('auth')->group(function () {
   Route::any('/admin_show_vifurushi',[AdminController::class,'show_admin_vifurushi'])->name('admin_show_vifurushi');
   Route::any('/show_create_vifurushi',[AdminController::class,'admin_show_create_vifurushi'])->name('show_create_vifurushi');
   Route::any('/create_vifurushi',[AdminController::class,'admin_create_vivfurushi'])->name('create_vifurushi');
-  Route::delete('/user/{user}', [AdminController::class, 'destroy'])->name('users.destroy');
+  Route::any('/user/{user}', [AdminController::class, 'destroy'])->name('users.destroy');
   /*  Route::any('/admin_users/edit_admin',[AdminController::class,'edit_admin']);
 */
                 
