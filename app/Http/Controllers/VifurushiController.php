@@ -144,7 +144,7 @@ class VifurushiController extends Controller
                 'Vifurushi_balance'=>$balance,
             ]);
             $vifurushi_miamala = VifurushiTransaction::where('Wakala_code',$wakala_profile->Wakala_code)->get();
-            $vifurushi_wallet = VifurushiWallet::where('Wakala_code',$wakala_profile->Wakala_code)->get();
+            $vifurushi_wallet = VifurushiWallet::where('Wakala_code',$wakala_profile->Wakala_code)->first();
             
 
         return view('wakalaViews.vifurushi',compact('wakala_profile','vifurushi_list','payment_success','payment_failed','vifurushi_wallet','vifurushi_miamala'));
