@@ -137,6 +137,22 @@ class TransactionController extends Controller
           'Transaction_status'=>"Success",
 
       ]);
+
+      $sum_purchased_vifurushi = VifurushiTransaction::where('Transaction_status',"Success")
+      ->where('Transaction_type','Purchase')
+      ->where('Wakala_code',$wakala_code)
+      ->sum('Value');
+$sum_sold_vifurushi = VifurushiTransaction::where('Transaction_status',"Success")
+      ->where('Transaction_type','Sale')
+      ->where('Wakala_code',$wakala_code)
+      ->sum('Value');
+$balance = $sum_purchased_vifurushi - $sum_sold_vifurushi;
+
+VifurushiWallet::where('Wakala_code',$wakala_code)->update([
+'Purchased_vifurushi'=> $sum_purchased_vifurushi,
+'Sold_vifurushi'=>$sum_sold_vifurushi,
+'Vifurushi_balance'=>$balance,
+]);
     }
     $sum_mauzo = Transactions::where('Wakala_code',$wakala_code)->sum('Cash');
     $sum_wakala_gawio = Transactions::where('Wakala_code',$wakala_code)->sum('Commission');
@@ -144,6 +160,10 @@ class TransactionController extends Controller
         'Jumla_mauzo'=>$sum_mauzo,
         'wakala_mapato'=>$sum_wakala_gawio,
     ]);
+
+
+
+
     $id = $verify_local['id'];
 
     $add_profile = $this->create_bando_profile( $id,$request->vifurushi);
