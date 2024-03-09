@@ -112,7 +112,7 @@ class VifurushiController extends Controller
         $vifurushi_list = vifurushi::where('target_user','Wakala')->where('status','Active')->get();
        
         $status_code = $verify['status_code'];
-        if(status_code == 1){
+        if($status_code == 1){
             $payment_success = "Malipo yamefanikiwa. Payments successiful!!";
             VifurushiTransaction::where('Transaction_request_id',rderTrackingId)->update([
                 'Transaction_status'=>"Success",
