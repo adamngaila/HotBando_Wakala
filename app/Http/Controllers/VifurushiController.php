@@ -107,6 +107,9 @@ class VifurushiController extends Controller
         $verify = http::get($url,[
             'OrderTrackingId'=>$OrderTrackingId->OrderTrackingId,
         ]);
+        $payment_failed ="";
+        $payment_success ="";
+        
         $user_id = Auth::user()->User_id;
         $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
         $vifurushi_list = vifurushi::where('target_user','Wakala')->where('status','Active')->get();
