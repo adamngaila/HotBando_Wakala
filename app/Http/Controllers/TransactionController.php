@@ -89,6 +89,7 @@ class TransactionController extends Controller
         $wakala_code = $request->wakala_code;
         $customer_id = CustomerAccounts::where('Phone',$request->Customer_phone)->pluck('Customer_id');
         $customer_id_value = $customer_id;
+        $package_value = $request->vifurushi;
         $wakala_commission= WakalaRegister::where('User_id', $user_id)->pluck('Wakala_commission');
         $sales_code = $this->generate_salescode(3);
         $trans_code = $this->generate_transactioncode(3);
@@ -98,9 +99,9 @@ class TransactionController extends Controller
             'Amount' =>  ['required',],
             
         ]);
-        $package_value = $request->vifurushi;
+        
        $balance_check = check_sufficient_package_balance($package_value,$wakala_code);
-       if($balance_check['status']){
+       if($balance_check['status'] == true){
         if($request->Amount >= $package_value)
         {
             $sales = SalesBook::create([
