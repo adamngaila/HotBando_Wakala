@@ -56,12 +56,25 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('admin_show_vifurushi') }}">
+              <a class="nav-link" data-toggle="collapse" href="ui-basic-vifurushic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">PACKAGES</span>
+                <i class=" icon-notebook menu-icon"></i>
+              </a>
+            <div class="collapse" id="ui-basic-vifurushi">
+            <ul class="nav flex-column sub-menu">
+            <li class="nav-item"><a class="nav-link" href="{{ route('admin_show_vifurushi') }}">
                 <span class="menu-title">Vifurushi</span>
                 <i class="icon-book-open menu-icon"></i>
               </a>
             </li>
-         
+            <li class="nav-item"><a class="nav-link" href="{{ route('admin_show_vifurushi') }}">
+                <span class="menu-title">Vocha</span>
+                <i class="icon-book-open menu-icon"></i>
+              </a>
+            </li>
+            </ul>
+              </div>
+</li>
             <li class="nav-item">
               <a class="nav-link" href="">
                 <span class="menu-title">Report   </span>
