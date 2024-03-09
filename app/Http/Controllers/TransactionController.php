@@ -100,7 +100,7 @@ class TransactionController extends Controller
             
         ]);
         
-       $balance_check = check_sufficient_package_balance($wakala_code);
+       $balance_check = $this->check_sufficient_package_balance($wakala_code);
        //if($package_value >= $balance_check){
         if($request->Amount >= $package_value)
         {
