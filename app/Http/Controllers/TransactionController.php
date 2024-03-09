@@ -101,7 +101,7 @@ class TransactionController extends Controller
         ]);
         
        $balance_check = check_sufficient_package_balance($wakala_code);
-       if($package_value >= $balance_check){
+       //if($package_value >= $balance_check){
         if($request->Amount >= $package_value)
         {
             $sales = SalesBook::create([
@@ -127,7 +127,7 @@ class TransactionController extends Controller
         'Commission'=>$Commission,
         'transaction_status'=> $request->approve,
         ]);
-        }
+       
         $vifurushi_T = VifurushiTransaction::create([
           'Transaction_id'=> $trans_code,
           'Wakala_code'=> $wakala_code,
@@ -137,7 +137,7 @@ class TransactionController extends Controller
           'Transaction_status'=>"Success",
 
       ]);
-    
+    }
     $sum_mauzo = Transactions::where('Wakala_code',$wakala_code)->sum('Cash');
     $sum_wakala_gawio = Transactions::where('Wakala_code',$wakala_code)->sum('Commission');
     WakalaRegister::where('Wakala_code',$wakala_code)->update([
@@ -153,14 +153,8 @@ class TransactionController extends Controller
   'status_user'=> 'valid',
   'mteja'=> $verify_local['jina'],
 ]);
-}
- else{
-        return response()->json(['success'=> 'transaction failed due to insufficient balance',
-  'balance'=>$balance_check['balance'],
-  'status_user'=> 'valid',
-  'mteja'=> $verify_local['jina'],
-]);
-       }
+
+
    }else{
     return response()->json(['success'=> 'failed to sell ,customer not found in database',
   'status_user'=>'invalid',
