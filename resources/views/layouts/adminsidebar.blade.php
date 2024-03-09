@@ -69,7 +69,7 @@
             </li>
             <li class="nav-item"><a class="nav-link" href="{{ route('admin_show_vifurushi') }}">
                 <span class="menu-title">Vocha</span>
-                <i class="icon-book-open menu-icon"></i>
+                <i class="icon-gift menu-icon"></i>
               </a>
             </li>
             </ul>
