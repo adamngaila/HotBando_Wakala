@@ -86,7 +86,7 @@ class TransactionController extends Controller
         if(Auth::user()->Usertype == 'Wakala')
     {
       if( $verify_local['status']){
-        $wakala_code = $request->wakala_code;
+        $waakla_code = $request->wakala_code;
         $customer_id = CustomerAccounts::where('Phone',$request->Customer_phone)->pluck('Customer_id');
         $customer_id_value = $customer_id;
         $package_value = $request->vifurushi;
@@ -100,8 +100,8 @@ class TransactionController extends Controller
             
         ]);
         
-       $balance_check = check_sufficient_package_balance($package_value,$wakala_code);
-       if($balance_check['status'] == true){
+       $balance_check = check_sufficient_package_balance($wakala_code);
+       if($package_value >= $balance_check){
         if($request->Amount >= $package_value)
         {
             $sales = SalesBook::create([
@@ -153,8 +153,8 @@ class TransactionController extends Controller
   'status_user'=> 'valid',
   'mteja'=> $verify_local['jina'],
 ]);
-       }
-       else{
+}
+ else{
         return response()->json(['success'=> 'transaction failed due to insufficient balance',
   'balance'=>$balance_check['balance'],
   'status_user'=> 'valid',
@@ -168,7 +168,7 @@ class TransactionController extends Controller
    }
   }
 }
-public function check_sufficient_package_balance($kifurshi_value,$wakala_code){
+/*public function check_sufficient_package_balance($kifurshi_value,$wakala_code){
  $wallet = VifurushiWallet::where('Wakala_code',$wakala_code)->first();
  $balance = $wallet->Vifurushi_balance;
  if($kifurshi_value>$balance){
@@ -188,7 +188,15 @@ return $jibu;
 
  }
 }
-
+*/
+public function check_sufficient_package_balance($wakala_code){
+  $wallet = VifurushiWallet::where('Wakala_code',$wakala_code)->first();
+  $balance = $wallet->Vifurushi_balance;
+ 
+ return $balance;
+ 
+  
+ }
 Public function generate_salescode($size)
 {
     $alpha_key ='HB-SLC-';
