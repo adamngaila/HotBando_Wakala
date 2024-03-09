@@ -143,16 +143,16 @@
                         </tr>
                       </thead>
                       <tbody>
-                      @foreach($vifurushi_wallet as $result)
+                      
                       <tr>
-                      <td>{{$result->Purchased_vifurushi}}</td>
-                     <td>{{$result->Sold_vifurushi}}</td>
-                     <td>{{$result->Credit_vifurushi}}</td>
-                     <td>{{$result->Vifurushi_balance}}</td>
+                      <td>{{$vifurushi_wallet->Purchased_vifurushi}}</td>
+                     <td>{{$vifurushi_wallet->Sold_vifurushi}}</td>
+                     <td>{{$vifurushi_wallet->Credit_vifurushi}}</td>
+                     <td>{{$vifurushi_wallet->Vifurushi_balance}}</td>
                    
                      
                     </tr>
-                    @endforeach
+                
                       </tbody>
                     </table>
                   </div>
