@@ -121,7 +121,7 @@ class VifurushiController extends Controller
            
             
         }
-        if(status_code == 0){
+        if($status_code == 0){
             $payment_failed = "Malipo hayajafanikiwa, jaribu tena. Payments failed try again later!!";
         }
 
