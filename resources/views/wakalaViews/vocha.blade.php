@@ -11,7 +11,7 @@
               <div class="col-12 grid-margin stretch-card"  id="mteja_signup">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">NUNUA VIFURUSHI</h4>
+                    <h4 class="card-title">NUNUA VOCHA</h4>
                           @if(session('payment_success'))
                             <div class="alert alert-success">
                           {{ session('payment_success') }}
@@ -23,28 +23,27 @@
                           </div>
                         @endif
                         
-                     <form class="form-inline" data-action="{{ route('purchase_kifurushi') }}" method ="POST" enctype="multipart/form-data" id="nunua-package-form">
+                     <form class="form-inline" data-action="{{ route('purchase_kifurushi') }}" method ="POST" enctype="multipart/form-data" id="nunua-vocha-form">
                      @csrf
   
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
-                          <div class="input-group-text font-weight-semibold">Package</div>
+                          <div class="input-group-text font-weight-semibold">Vocha</div>
                         </div>
-                        <select class="form-control" class="form-control" id="vifurushi_list" name="vifurshi_list" placeholder="--chagua vifurushi -- ">
-                        <option value="">--select----</option>
-                        
-                        @foreach($vifurushi_list as $kifurushi)
-
-                        <option value="{{ $kifurushi->id }}" >{{ $kifurushi->Description}} with {{ $kifurushi->value}} credits at price of Tzs {{ $kifurushi->amount}} </option>
-                        @endforeach
+                        <select class="form-control" class="form-control" id="vocha_list" name="vifurshi_list" placeholder="--chagua vifurushi -- ">
+                        <option value= 500.0>500 package @ 500/=</option>
+                                <option value= 1000.0>1,000 package @ 1000 /=</option>
+                                <option value= 2000.0>2,000 package @ 2000/=</option>
+                                <option value= 5000.0>package @ 5,000/=</option>
+                                <option value= 10000.0>package @ 10,000/=</option>
                       </select>     
 
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
-                          <div class="input-group-text">PRICE</div>
+                          <div class="input-group-text">Idadi</div>
                         </div>
-                        <input type="text" class="form-control" id="price" name="price" placeholder=" " readonly>
+                        <input type="text" class="form-control" id="qty" name="qty" placeholder=" " readonly>
                       </div>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
@@ -52,14 +51,7 @@
                         </div>
                         <input type="text" class="form-control" id="user_id" name="user_id" value="{{$wakala_profile->Wakala_code}}" readonly>
                       </div>
-                      <div class="input-group mb-2 mr-sm-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">QTY</div>
-                        </div>
-                        <input type="text" class="form-control" id="qty" name="qty" placeholder="1">
-                      </div>
-                      <input type="hidden" class="form-control" id="value" name="value" value="{{ $kifurushi->value}}">
-    
+            
                       <button type="submit" class="btn btn-primary mb-2" id='nunua'>NUNUA</button>
                      
                     </form>
@@ -103,62 +95,12 @@
                         </tr>
                       </thead>
                       <tbody>
-                      @foreach($vifurushi_miamala as $result)
-                      <tr>
-                      <td>{{$result->Transaction_id}}</td>
-                     <td>{{$result->Transaction_request_id}}</td>
-                     <td>{{$result->Value}}</td>
-                     <td>{{$result->Amount}}</td>
-                     <td>{{$result->Transaction_status}}</td>
-                     <td>{{$result->created_at}}</td>
-                    
-                    </tr>
-                    @endforeach
-                      </tbody>
-                    </table>
-                  </div>
-</div>
-<div class="col-md-12 grid-margin  stretch-card">
-                <div class="card"> 
-                <div class="card-body">
-                  <div class="row">
-                      <div class="col-md-12">
-                        <div class="d-sm-flex align-items-baseline report-summary-header">
-                          <h5 class="font-weight-semibold">TAARIFA YA MFUKO</h5>
-
-                          <button class="btn btn-icons border-0 p-2 pull-right" id ='refresh'><i class="icon- icon-refresh"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row report-inner-cards-wrapper">
-                    <div class="col-md-12">
-                    <table class="table table-bordered" id="table-local-customer" style="width:80%; word-wrap: break-word;">
-                      <thead>
-                        <tr>
                       
-                          <th>Vifurushi vilivyonunuliwa</th>
-                          <th>Vifurushi vilivyouzwa</th>
-                          <th>Vifurushi vilivyokopwa</th>
-                          <th>Salio</th>
-                          
-                        </tr>
-                      </thead>
-                      <tbody>
-                      @foreach($vifurushi_wallet as $result)
-                      <tr>
-                      <td>{{$result->Purchased_vifurushi}}</td>
-                     <td>{{$result->Sold_vifurushi}}</td>
-                     <td>{{$result->Credit_vifurushi}}</td>
-                     <td>{{$result->Vifurushi_balance}}</td>
-                   
-                     
-                    </tr>
-                    @endforeach
                       </tbody>
                     </table>
                   </div>
 </div>
-         
+
               
         </div>
         </div>

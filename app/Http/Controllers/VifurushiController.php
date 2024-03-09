@@ -150,6 +150,9 @@ class VifurushiController extends Controller
         return view('wakalaViews.vifurushi',compact('wakala_profile','vifurushi_list','payment_success','payment_failed','vifurushi_miamala','vifurushi_wallet',));
 
     }
+    public function purchase_vocha_process(){
+        
+    }
     Public function generate_transactioncode($size)
 {
     $alpha_key ='HBVFR';

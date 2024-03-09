@@ -60,7 +60,7 @@
                 <i class="icon-feed menu-icon">  </i>
               </a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('admin_show_vifurushi') }}">
+            <li class="nav-item"><a class="nav-link" href="wakala_vocha">
                 <span class="menu-title">Vocha</span>
                 <i class="icon-gift menu-icon"></i>
               </a>

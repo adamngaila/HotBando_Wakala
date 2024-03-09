@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::any('/wakala_mauzo',[WakalaController::class,'show_mauzo'])->name('wakala_mauzo');
    
    
-
+    Route::any('/wakala_vocha',[WakalaController::class,'show_vocha'])->name('wakala_vocha');
     Route::middleware('CheckWakalaPackageWallet')->group(function () {
         Route::any('/sale_bando',[TransactionController::class,'make_sales'])->name('sale_bando');
         Route::any('/dashboard',[WakalaController::class,'index'] )->name('dashboard');
