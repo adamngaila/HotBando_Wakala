@@ -94,7 +94,7 @@
                       
                           <th>Mcode</th>
                           <th>   Tracking code </th>
-                          <th>Package/th>
+                          <th>Package</th>
                           <th> Amount </th>
                           <th> Status </th>
                            <th> Time </th>
@@ -137,9 +137,8 @@
                       
                           <th>Vifurushi vilivyonunuliwa</th>
                           <th>Vifurushi vilivyouzwa</th>
-                          <th>Vifurushi vilivyokopwa/th>
+                          <th>Vifurushi vilivyokopwa</th>
                           <th>Salio</th>
-                          
                           
                         </tr>
                       </thead>
@@ -152,7 +151,6 @@
                      <td>{{$result->Vifurushi_balance}}</td>
                    
                      
-                    
                     </tr>
                     @endforeach
                       </tbody>
