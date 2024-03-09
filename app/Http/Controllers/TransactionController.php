@@ -137,7 +137,7 @@ class TransactionController extends Controller
           'Transaction_status'=>"Success",
 
       ]);
-
+    }
       $sum_purchased_vifurushi = VifurushiTransaction::where('Transaction_status',"Success")
       ->where('Transaction_type','Purchase')
       ->where('Wakala_code',$wakala_code)
@@ -153,7 +153,7 @@ VifurushiWallet::where('Wakala_code',$wakala_code)->update([
 'Sold_vifurushi'=>$sum_sold_vifurushi,
 'Vifurushi_balance'=>$balance,
 ]);
-    }
+   
     $sum_mauzo = Transactions::where('Wakala_code',$wakala_code)->sum('Cash');
     $sum_wakala_gawio = Transactions::where('Wakala_code',$wakala_code)->sum('Commission');
     WakalaRegister::where('Wakala_code',$wakala_code)->update([
