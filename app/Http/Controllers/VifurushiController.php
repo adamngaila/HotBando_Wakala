@@ -144,10 +144,10 @@ class VifurushiController extends Controller
                 'Vifurushi_balance'=>$balance,
             ]);
             $vifurushi_miamala = VifurushiTransaction::where('Wakala_code',$wakala_profile->Wakala_code)->get();
-            $vifurushi_wallet = VifurushiWallet::where('Wakala_code',$wakala_profile->Wakala_code)->first();
+            $vifurushi_wallet = VifurushiWallet::where('Wakala_code',$wakala_profile->Wakala_code)->get();
             
 
-        return view('wakalaViews.vifurushi',compact('wakala_profile','vifurushi_list','payment_success','payment_failed','vifurushi_wallet','vifurushi_miamala'));
+        return view('wakalaViews.vifurushi',compact('wakala_profile','vifurushi_list','payment_success','payment_failed','vifurushi_miamala','vifurushi_wallet',));
 
     }
     Public function generate_transactioncode($size)
