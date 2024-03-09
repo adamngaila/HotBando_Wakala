@@ -104,7 +104,7 @@ class VifurushiController extends Controller
         //"call_back_url": "http://192.168.88.253/rensponse?OrderTrackingId=de51f26c-9438-4a6e-9b8a-de54c3bf7dca&OrderMerchantReference=1691489147-0613017308-1000",
         //https://api.hotbando.tech//verifyPayment?OrderTrackingId=d6611536-014f-4417-a802-dd8f4e5334de
         $url ="https://api.hotbando.tech//verifyPayment";
-        $verify = http::post($url,[
+        $verify = http::get($url,[
             'OrderTrackingId'=>$OrderTrackingId->OrderTrackingId,
         ]);
         $user_id = Auth::user()->User_id;
