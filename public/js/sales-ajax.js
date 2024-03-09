@@ -28,9 +28,7 @@ $(document).ready(function(){
             method: 'POST',
             data: new FormData(this),
             dataType: 'JSON',
-            contentType: false,
-            cache: false,
-            processData: false,
+           
             
             success:function(response)
             {
@@ -67,9 +65,7 @@ $(document).ready(function(){
                             method: 'POST',
                              data: new FormData(this),
                             dataType: 'JSON',
-                            contentType: false,
-                            cache: false,
-                            processData: false,
+                           
                             
                             success:function(response)
                             {
