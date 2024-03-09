@@ -101,7 +101,7 @@ class TransactionController extends Controller
         ]);
         
        $balance_check = $this->check_sufficient_package_balance($wakala_code);
-       //if($package_value >= $balance_check){
+       if($package_value >= $balance_check){
         if($request->Amount >= $package_value)
         {
             $sales = SalesBook::create([
@@ -132,7 +132,7 @@ class TransactionController extends Controller
           'Transaction_id'=> $trans_code,
           'Wakala_code'=> $wakala_code,
           'Transaction_type'=>"Sale",
-          'Value'=> $package_value,
+          'Value'=> $request->vifurushi,
           'Amount'=> $request->Amount,
           'Transaction_status'=>"Success",
 
@@ -153,6 +153,12 @@ class TransactionController extends Controller
   'status_user'=> 'valid',
   'mteja'=> $verify_local['jina'],
 ]);
+       }else{
+        return response()->json(['success'=> 'failed to sell , not sufficient balance',
+  'status_user'=>'valid',
+]);
+
+       }
 
 
    }else{
