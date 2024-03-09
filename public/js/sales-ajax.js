@@ -31,15 +31,13 @@ $(document).ready(function(){
             contentType: false,
             cache: false,
             processData: false,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-              },
+            
             success:function(response)
             {
                
                 alert(response.success);
                 if(response.status_user == 'valid')
-                
+
                 {
 
                     alert(' bando la shg' + vifurushi + 'limeuzwa kwa '+response.mteja+ 'mwenye namba ' +simu);
@@ -72,9 +70,7 @@ $(document).ready(function(){
                             contentType: false,
                             cache: false,
                             processData: false,
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                              },
+                            
                             success:function(response)
                             {
                                 if(response.status){
