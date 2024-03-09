@@ -117,6 +117,49 @@
                     </table>
                   </div>
 </div>
+<div class="col-md-12 grid-margin  stretch-card">
+                <div class="card"> 
+                <div class="card-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                        <div class="d-sm-flex align-items-baseline report-summary-header">
+                          <h5 class="font-weight-semibold">TAARIFA YA MFUKO</h5>
+
+                          <button class="btn btn-icons border-0 p-2 pull-right" id ='refresh'><i class="icon- icon-refresh"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row report-inner-cards-wrapper">
+                    <div class="col-md-12">
+                    <table class="table table-bordered" id="table-local-customer" style="width:80%; word-wrap: break-word;">
+                      <thead>
+                        <tr>
+                      
+                          <th>Vifurushi vilivyonunuliwa</th>
+                          <th>Vifurushi vilivyouzwa</th>
+                          <th>Vifurushi vilivyokopwa/th>
+                          <th>Salio</th>
+                          
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                      @foreach($vifurushi_wallet as $result)
+                      <tr>
+                      <td>{{$result->Purchased_vifurushi}}</td>
+                     <td>{{$result->Sold_vifurushi}}</td>
+                     <td>{{$result->Credit_vifurushi}}</td>
+                     <td>{{$result->Vifurushi_balance}}</td>
+                   
+                     
+                    
+                    </tr>
+                    @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+</div>
+         
               
         </div>
         </div>
