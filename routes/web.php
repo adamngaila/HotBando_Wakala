@@ -37,7 +37,8 @@ Route::middleware('auth')->group(function () {
     });
     Route::any('/get-kifurushi-price/{kifurushiId}', [VifurushiController::class,'getKifurushiPrice']);
     Route::any('/purchase_kifurushi', [VifurushiController::class,'purchase_kifurushi_process'])->name('purchase_kifurushi');
-    Route::any('/kifurushi-payment-verify/{OrderTrackingId}', [VifurushiController::class,'verify_payments']);
+    Route::any('/purchased-vocha', [VifurushiController::class,'purchase_vocha_process'])->name('purchased');
+    Route::any('/kifurushi-payment-verify', [VifurushiController::class,'verify_payments']);
     Route::any('/user/{user}', [AdminController::class, 'destroy'])->name('users.destroy');
 
 
