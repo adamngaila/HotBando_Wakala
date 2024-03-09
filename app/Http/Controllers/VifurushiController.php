@@ -114,7 +114,7 @@ class VifurushiController extends Controller
         $status_code = $verify['status_code'];
         if($status_code == 1){
             $payment_success = "Malipo yamefanikiwa. Payments successiful!!";
-            VifurushiTransaction::where('Transaction_request_id',rderTrackingId)->update([
+            VifurushiTransaction::where('Transaction_request_id',$OrderTrackingId->OrderTrackingId)->update([
                 'Transaction_status'=>"Success",
                 'Transaction_reference'=>$verify['merchant_reference'],
             ]);
