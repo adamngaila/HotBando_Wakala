@@ -101,7 +101,7 @@ class TransactionController extends Controller
         ]);
         
        $balance_check = $this->check_sufficient_package_balance($wakala_code);
-       if($package_value >= $balance_check){
+       if($request->Amount >= $balance_check){
         if($request->Amount >= $package_value)
         {
             $sales = SalesBook::create([
