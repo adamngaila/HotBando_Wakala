@@ -176,7 +176,7 @@ VifurushiWallet::where('Wakala_code',$wakala_code)->update([
   'mteja'=> $verify_local['jina'],
 ]);
        }else{
-        return response()->json(['success'=> 'failed to sell , not sufficient balance',
+        return response()->json(['success'=> 'failed to sell , not sufficient balance tafasdhali nunua kifurushi',
   'status_user'=>'valid',
 ]);
 

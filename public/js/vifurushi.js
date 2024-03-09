@@ -91,9 +91,11 @@ document.getElementById('vifurushi_list').addEventListener('change', function() 
                 console.error('Error fetching kifurushi price: ' +response.error);
             
           });
-    } else {
+    } 
+    else {
         // Reset the price textbox if no product is selected
         document.getElementById('price').value = '';
+        
     }
 });
 })
