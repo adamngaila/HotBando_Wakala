@@ -30,12 +30,15 @@ class WakalaController extends Controller
     {
         $user_id = Auth::user()->User_id;
         $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
+
+        $wallet = VifurushiWallet::where('Wakala_code',$wakala_profile->Wakala_code)->first();
+        $balance = $wallet->Vifurushi_balance;
         $customers_count = CustomerAccounts::where('Wakala_code',$wakala_profile->Wakala_code)->count();
         $mauzo = SalesBook::where('Wakala_code',$wakala_profile->Wakala_code)->sum('Amount');
         $mapato = Transactions::where('Wakala_code',$wakala_profile->Wakala_code)->sum('Commission');
 
      
-        return view('wakalaViews.dashboard',compact('wakala_profile','customers_count','mauzo','mapato'));
+        return view('wakalaViews.dashboard',compact('wakala_profile','customers_count','mauzo','mapato','balance'));
     }
     public function show_customers(){
         

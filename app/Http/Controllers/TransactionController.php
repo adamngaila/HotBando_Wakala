@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Models\User;
 use App\Models\Transactions;
+use App\Models\VifurushiWallet;
+use App\Models\VifurushiTransaction;
 use App\Models\CustomerAccounts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -97,6 +99,8 @@ class TransactionController extends Controller
             
         ]);
         $package_value = $request->vifurushi;
+       $balance_check = check_sufficient_package_balance($package_value,$wakala_code);
+       if($balance_check['status']){
         if($request->Amount >= $package_value)
         {
             $sales = SalesBook::create([
@@ -123,6 +127,15 @@ class TransactionController extends Controller
         'transaction_status'=> $request->approve,
         ]);
         }
+        $vifurushi_T = VifurushiTransaction::create([
+          'Transaction_id'=> $trans_code,
+          'Wakala_code'=> $wakala_code,
+          'Transaction_type'=>"Sale",
+          'Value'=> $package_value,
+          'Amount'=> $request->Amount,
+          'Transaction_status'=>"Success",
+
+      ]);
     
     $sum_mauzo = Transactions::where('Wakala_code',$wakala_code)->sum('Cash');
     $sum_wakala_gawio = Transactions::where('Wakala_code',$wakala_code)->sum('Commission');
@@ -139,12 +152,40 @@ class TransactionController extends Controller
   'status_user'=> 'valid',
   'mteja'=> $verify_local['jina'],
 ]);
+       }
+       else{
+        return response()->json(['success'=> 'transaction failed due to insufficient balance',
+  'balance'=>$balance_check['balance'],
+  'status_user'=> 'valid',
+  'mteja'=> $verify_local['jina'],
+]);
+       }
    }else{
     return response()->json(['success'=> 'failed to sell ,customer not found in database',
   'status_user'=>'invalid',
 ]);
    }
   }
+}
+public function check_sufficient_package_balance($kifurshi_value,$wakala_code){
+ $wallet = VifurushiWallet::where('Wakala_code',$wakala_code)->first();
+ $balance = $wallet->Vifurushi_balance;
+ if($kifurshi_value>$balance){
+  $jibu = [
+    'status'=>false,
+    'balance'=>$balance,
+   
+];
+return $jibu;
+ }else{
+  $jibu = [
+    'status'=>true,
+    'balance'=>$balance,
+   
+];
+return $jibu;
+
+ }
 }
 
 Public function generate_salescode($size)

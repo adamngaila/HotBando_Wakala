@@ -39,6 +39,7 @@ $(document).ready(function(){
                
                 alert(response.success);
                 if(response.status_user == 'valid')
+                
                 {
 
                     alert(' bando la shg' + vifurushi + 'limeuzwa kwa '+response.mteja+ 'mwenye namba ' +simu);
