@@ -79,7 +79,9 @@ class TransactionController extends Controller
     {
         
         $user_id = Auth::user()->User_id;
-        $wakala_code =DB::table('wakala_registers')->where('User_id', $user_id)->pluck('Wakala_code');
+        $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
+        $wakala_code = $wakala_profile->Wakala_code;
+        //DB::table('wakala_registers')->where('User_id', $user_id)->pluck('Wakala_code');
         
         $verify_local = $this->verify_customer($request->Customer_phone);
 
@@ -137,22 +139,8 @@ class TransactionController extends Controller
           'Transaction_status'=>"Success",
 
       ]);
-    }
-      $sum_purchased_vifurushi = VifurushiTransaction::where('Transaction_status',"Success")
-      ->where('Transaction_type','Purchase')
-      ->where('Wakala_code',$wakala_code)
-      ->sum('Value');
-$sum_sold_vifurushi = VifurushiTransaction::where('Transaction_status',"Success")
-      ->where('Transaction_type','Sale')
-      ->where('Wakala_code',$wakala_code)
-      ->sum('Value');
-$balance = $sum_purchased_vifurushi - $sum_sold_vifurushi;
-
-VifurushiWallet::where('Wakala_code',$wakala_code)->update([
-'Purchased_vifurushi'=> $sum_purchased_vifurushi,
-'Sold_vifurushi'=>$sum_sold_vifurushi,
-'Vifurushi_balance'=>$balance,
-]);
+    }+
+      
    
     $sum_mauzo = Transactions::where('Wakala_code',$wakala_code)->sum('Cash');
     $sum_wakala_gawio = Transactions::where('Wakala_code',$wakala_code)->sum('Commission');
@@ -162,7 +150,21 @@ VifurushiWallet::where('Wakala_code',$wakala_code)->update([
     ]);
 
 
+    $sum_purchased_vifurushi = VifurushiTransaction::where('Transaction_status',"Success")
+    ->where('Transaction_type','Purchase')
+    ->where('Wakala_code',$wakala_code)
+    ->sum('Value');
+$sum_sold_vifurushi = VifurushiTransaction::where('Transaction_status',"Success")
+    ->where('Transaction_type','Sale')
+    ->where('Wakala_code',$wakala_code)
+    ->sum('Value');
+$balance = $sum_purchased_vifurushi - $sum_sold_vifurushi;
 
+VifurushiWallet::where('Wakala_code',$wakala_code)->update([
+'Purchased_vifurushi'=> $sum_purchased_vifurushi,
+'Sold_vifurushi'=>$sum_sold_vifurushi,
+'Vifurushi_balance'=>$balance,
+]);
 
     $id = $verify_local['id'];
 
