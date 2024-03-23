@@ -84,7 +84,7 @@ class VifurushiController extends Controller
                 'Transaction_status'=>"Pending",
 
             ]);
-            return response()->json(['status'=>'good',
+            return response()->json(['status'=>$response_url['status'],
             'tcode'=>$Tcode,
             'package'=>$request->value,
              'redirect_url'=>$response_url['payment_url'],
