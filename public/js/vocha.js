@@ -30,6 +30,7 @@ $(document).ready(function(){
 
         // Construct FormData object using the form
         var formData = new FormData(this);
+        console.log(this);
 
         // Perform AJAX call
         $.ajax({
