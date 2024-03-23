@@ -44,8 +44,9 @@ $(document).ready(function(){
 
                 if(response.status == 'good'){
                     alert('Payment process initiated, Transaction Id: ' + response.tcode + " for vocha of " + response.package + " value");
+                    
                     $('#pesapaypage_vocha').attr('src', redirectUrl);
-                    $("pesapal_payment_vocha").show();
+                    $("#pesapal_payment_vocha").show();
 
                  $('#pesapaypage_vocha').on('load', function() {
                         var newUrl = $(this).attr('src');
