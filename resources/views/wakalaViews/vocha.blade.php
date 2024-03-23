@@ -23,7 +23,7 @@
                           </div>
                         @endif
                         
-                     <form class="form-inline" data-action="{{ route('purchase_kifurushi') }}" method ="POST" enctype="multipart/form-data" id="nunua-vocha-form">
+                     <form class="form-inline" data-action="{{ route('purchase_vocha') }}" method ="POST" enctype="multipart/form-data" id="nunua-vocha-form">
                      @csrf
   
                       <div class="input-group mb-2 mr-sm-2">
@@ -58,11 +58,11 @@
                   </div>
                 </div>
               </div>
-              <div class="col-12 grid-margin stretch-card" style='display:none;' id="pesapal_payment">
+              <div class="col-12 grid-margin stretch-card" style='display:none;' id="pesapal_payment_vocha">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">MALIPO</h4>
-                    <iframe  width="100%" height="300" style="border:none;" id="pesapaypage" >
+                    <iframe  width="100%" height="300" style="border:none;" id="pesapaypage_vocha" >
                   </iframe>
                   </div>
                 </div>
@@ -110,7 +110,6 @@
 
     @endsection
     @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-      <script src="{{ asset('js/vifurushi.js') }}" defer></script>
+   
     
  @endsection

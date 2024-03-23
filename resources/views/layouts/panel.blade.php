@@ -90,6 +90,7 @@
    
     <script src="{{ asset('js/sales-ajax.js') }}" defer></script>
     <script src="{{ asset('js/customer.js')  }}"defer ></script>
+    <script src="{{ asset('js/vocha.js') }}" defer></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <script>
       $(document).ready( function () {

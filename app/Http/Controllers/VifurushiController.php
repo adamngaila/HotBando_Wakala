@@ -29,9 +29,9 @@ class VifurushiController extends Controller
             return response()->json(['error' => 'Product not found'], 404);
         }
     }
-    public function initialize_kifurushi_purchase($Id,$Tcode,$Amount){
-       
-        $url = 'https://api.hotbando.tech/buyPackageWakala';
+    public function initialize_pesapay_purchase($Id,$Tcode,$Amount,$URL){
+        //'https://api.hotbando.tech/buyPackageWakala';
+        $url = $URL;
 
         $response = http::post($url,[
             'Id'=>$Id,
@@ -54,22 +54,23 @@ class VifurushiController extends Controller
         
         $jibu = ['status'=>false,];
           return $jibu;
+        }
     }
-
-    }
+   
     Public function purchase_kifurushi_process(Request $request){
         $request->validate([
             'qty' => ['required']
         ]);
         $Id = $request->user_id;
         $current = Carbon::now();
-        $Tcode = $this->generate_transactioncode(7);
+        $Tcode = $this->generate_transactioncode(7,'HBVFR');
         $Tcode.= $current;
         $Amount = $request->price*$request->qty;
+        $URL ='https://api.hotbando.tech/buyPackageWakala';
       
         if($Amount >= $request->price)
         {
-         $response_url = $this->initialize_kifurushi_purchase($Id,$Tcode,$Amount);
+         $response_url = $this->initialize_pesapay_purchase($Id,$Tcode,$Amount,$URL);
          if($response_url['status'] == true){
             $trans_request_id = $response_url['order_tracking_id'];
             $vifurushi_T = VifurushiTransaction::create([
@@ -150,32 +151,74 @@ class VifurushiController extends Controller
         return view('wakalaViews.vifurushi',compact('wakala_profile','vifurushi_list','payment_success','payment_failed','vifurushi_miamala','vifurushi_wallet',));
 
     }
-    public function purchase_vocha_process(){
-        
-    }
-    Public function generate_transactioncode($size)
-{
-    $alpha_key ='HBVFR';
-    $keys = range('0', '9');
 
-    for ($i = 0; $i < 2; $i++)
+    public function purchase_vocha_process(Request $request)
     {
-      $alpha_key .= $keys[array_rand($keys)];
+        $Id = $request->user_id;
+        $current = Carbon::now();
+        $Tcode = $this->generate_transactioncode(6,'HBVCH');
+        $Tcode.= $current;
+
+        $Amount = ($request->vocha_list - ($request->vocha_list*0.15))*$request->qty;
+        $value = $request->vocha_list*$request->qty;
+
+        $URL = "https://api.hotbando.tech/buyVochaWakala";
+
+        $response_url = $this->initialize_pesapay_purchase($Id,$Tcode,$Amount,$URL);
+
+        if($response_url['status'] == true){
+            $trans_request_id = $response_url['order_tracking_id'];
+            $vifurushi_T = VifurushiTransaction::create([
+                'Transaction_id'=>$Tcode,
+                'Wakala_code'=> $Id,
+                'Transaction_type'=>"Purchase_Vocha",
+                'Value'=> $value,
+                'Amount'=> $Amount,
+                'kifurushi_id'=>$request->vocha_list,
+                'Transaction_request_id'=> $trans_request_id,
+                'Transaction_status'=>"Pending",
+
+            ]);
+
+            return response()->json(['status'=>'good',
+            'tcode'=>$Tcode,
+            'package'=>$request->value,
+             'redirect_url'=>$response_url['payment_url'],
+             
+            ]);
+        }
+        else{
+            return response()->json(['status'=> 'bad',
+            'tcode'=>$Tcode,
+            ]);
+        }
+       
+    }
+    
+
+    Public function generate_transactioncode($size,$key)
+    {
+        $alpha_key = $key;
+        $keys = range('0', '9');
+
+        for ($i = 0; $i < 2; $i++)
+        {
+        $alpha_key .= $keys[array_rand($keys)];
+
+        }
+        $length = $size - 2;
+
+        $key = '';
+        $keys = range(0, 9);
+
+        for ($i = 0; $i < $length; $i++) {
+        $key .= $keys[array_rand($keys)];
+        }
+
+        return $alpha_key . $key;
+            return $test;
 
     }
-    $length = $size - 2;
-
-    $key = '';
-    $keys = range(0, 9);
-
-    for ($i = 0; $i < $length; $i++) {
-      $key .= $keys[array_rand($keys)];
-    }
-
-    return $alpha_key . $key;
-        return $test;
-
-}
 
  /* $vifurushi_W = VifurushiWallet::where('Wakala_code',$Id)->update([
                 'Purchased_vifurushi',
