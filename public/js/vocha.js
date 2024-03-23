@@ -23,11 +23,9 @@ $(document).ready(function(){
         }, 3000);
     }
 
-    var form = '#nunua-vocha-form';
-
-    $(form).on('submit', function(event){
+    var form = document.querySelector('#nunua-vocha-form');
+    form.addEventListener('submit', function(event) {
         event.preventDefault();
-
         // Construct FormData object using the form
         var formData = new FormData(this);
         console.log(this);
@@ -36,7 +34,7 @@ $(document).ready(function(){
         $.ajax({
             url: "/purchase_vocha",
             method: 'POST',
-            data: new FormData(this),
+            data: formData,
             dataType: 'JSON',
             contentType: false,
             cache: false,
