@@ -73,7 +73,7 @@
                   <div class="row">
                       <div class="col-md-12">
                         <div class="d-sm-flex align-items-baseline report-summary-header">
-                          <h5 class="font-weight-semibold">TAARIFA ZA VIFURUSHI VYAKO</h5>
+                          <h5 class="font-weight-semibold">TAARIFA ZA MIAMALA YA VOCHA</h5>
 
                           <button class="btn btn-icons border-0 p-2 pull-right" id ='refresh'><i class="icon- icon-refresh"></i></button>
                         </div>
@@ -110,6 +110,7 @@
 
     @endsection
     @section('script')
+    <script src="{{ asset('js/vocha.js') }}" defer></script>
    
     
  @endsection
