@@ -36,7 +36,7 @@ $(document).ready(function(){
         $.ajax({
             url: "/purchase_vocha",
             method: 'POST',
-            data: formData,
+            data: new FormData(this),
             dataType: 'JSON',
             contentType: false,
             cache: false,

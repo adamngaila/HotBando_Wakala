@@ -52,7 +52,7 @@
                         <input type="text" class="form-control" id="user_id" name="user_id" value="{{$wakala_profile->Wakala_code}}" readonly>
                       </div>
             
-                      <button type="submit" class="btn btn-primary mb-2" id='nunua'>NUNUA</button>
+                      <button type="submit" class="btn btn-primary mb-2" id='nunua_vocha'>NUNUA</button>
                      
                     </form>
                   </div>
