@@ -30,7 +30,7 @@
                         <div class="input-group-prepend">
                           <div class="input-group-text font-weight-semibold">Vocha</div>
                         </div>
-                        <select class="form-control" class="form-control" id="vocha_list" name="vifurshi_list" placeholder="--chagua vifurushi -- ">
+                        <select class="form-control" class="form-control" id="vocha_list" name="vocha_list" placeholder="--chagua vifurushi -- ">
                         <option value= 500.0>500 package @ 500/=</option>
                                 <option value= 1000.0>1,000 package @ 1000 /=</option>
                                 <option value= 2000.0>2,000 package @ 2000/=</option>
