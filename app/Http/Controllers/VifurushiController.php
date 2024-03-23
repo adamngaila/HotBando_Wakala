@@ -156,7 +156,7 @@ class VifurushiController extends Controller
     {
         $Id = $request->user_id;
         $current = Carbon::now();
-        $Tcode = $this->generate_transactioncode(6,'HBVCH');
+        $Tcode = $this->generate_transactioncode(7,'HBVCH');
         $Tcode.= $current;
 
         $Amount = ($request->vocha_list - ($request->vocha_list*0.15))*$request->qty;

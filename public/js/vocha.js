@@ -48,12 +48,12 @@ $(document).ready(function(){
                     $('#pesapaypage_vocha').attr('src', redirectUrl);
                     $("pesapal_payment_vocha").show();
 
-                  /*  $('#pesapaypage').on('load', function() {
+                 $('#pesapaypage_vocha').on('load', function() {
                         var newUrl = $(this).attr('src');
                         console.log('New URL in iframe:', newUrl);
                         window.parent.postMessage({ url: newUrl }, '*');
                         showNotification('URL in iframe changed: ' + newUrl);
-                    });*/
+                    });
                 }
                 if(response.status == 'bad'){
                     alert(response.status);
