@@ -4,6 +4,24 @@ $(document).ready(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    function showNotification(message) {
+        // Create a div for notification
+        var notification = $('<div>')
+            .addClass('notification')
+            .text(message)
+            .hide();
+
+        // Append notification to body and show with animation
+        $('body').append(notification);
+        notification.fadeIn();
+
+        // Hide notification after 3 seconds
+        setTimeout(function() {
+            notification.fadeOut(function() {
+                $(this).remove();
+            });
+        }, 3000);
+    }
 
     var form = '#nunua-vocha-form';
 

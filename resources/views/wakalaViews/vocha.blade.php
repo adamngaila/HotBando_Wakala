@@ -111,6 +111,6 @@
     @endsection
     @section('script')
     
-   
+    <script src="{{ asset('js/vocha.js') }}" defer></script>
     
  @endsection
