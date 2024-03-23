@@ -182,7 +182,7 @@ class VifurushiController extends Controller
 
             return response()->json(['status'=>'good',
             'tcode'=>$Tcode,
-            'package'=>$request->value,
+            'package'=>$request->$value,
              'redirect_url'=>$response_url['payment_url'],
              
             ]);
@@ -194,7 +194,7 @@ class VifurushiController extends Controller
         }
        
     }
-    
+
 
     Public function generate_transactioncode($size,$key)
     {
