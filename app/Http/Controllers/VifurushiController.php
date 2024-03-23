@@ -182,7 +182,7 @@ class VifurushiController extends Controller
 
             return response()->json(['status'=>'good',
             'tcode'=>$Tcode,
-            'package'=>$request->$value,
+            'package'=>$value,
              'redirect_url'=>$response_url['payment_url'],
              
             ]);
