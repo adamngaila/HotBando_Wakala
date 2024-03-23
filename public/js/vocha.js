@@ -43,17 +43,18 @@ $(document).ready(function(){
                 var redirectUrl = response.redirect_url;
 
                 if(response.status == 'good'){
-                    alert('Payment process initiated, Transaction Id: ' + response.tcode + " for vocha of " + response.package + " value");
-                    $("#pesapal_payment_vocha").show();
+                   // alert('Payment process initiated, Transaction Id: ' + response.tcode + " for vocha of " + response.package + " value");
+                    
                     $('#pesapaypage_vocha').attr('src', redirectUrl);
+                    $("#pesapal_payment_vocha").show();
                     
 
-                 $('#pesapaypage_vocha').on('load', function() {
+              /*   $('#pesapaypage_vocha').on('load', function() {
                         var newUrl = $(this).attr('src');
                         console.log('New URL in iframe:', newUrl);
                         window.parent.postMessage({ url: newUrl }, '*');
                         showNotification('URL in iframe changed: ' + newUrl);
-                    });
+                    });*/
                 }
                 if(response.status == 'bad'){
                     alert(response.status);
