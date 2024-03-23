@@ -36,9 +36,7 @@ $(document).ready(function(){
             method: 'POST',
             data: formData,
             dataType: 'JSON',
-            contentType: false,
-            cache: false,
-            processData: false,
+            
             success: function(response) {
                 var redirectUrl = response.redirect_url;
 
