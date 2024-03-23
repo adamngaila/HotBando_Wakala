@@ -43,10 +43,11 @@ $(document).ready(function(){
                 var redirectUrl = response.redirect_url;
 
                 if(response.status == 'good'){
-                   // alert('Payment process initiated, Transaction Id: ' + response.tcode + " for vocha of " + response.package + " value");
-                    
+                   // 
                     $('#pesapaypage_vocha').attr('src', redirectUrl);
                     $("#pesapal_payment_vocha").show();
+                    alert('Payment process initiated, Transaction Id: ' + response.tcode + " for vocha of " + response.package + " value");
+                    
                     
 
               /*   $('#pesapaypage_vocha').on('load', function() {
