@@ -15,6 +15,7 @@ use App\Models\Transactions;
 use App\Models\VifurushiTransaction;
 use App\Models\VifurushiWallet;
 use App\Models\CustomerAccounts;
+use App\Models\voucher;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
@@ -100,11 +101,12 @@ class WakalaController extends Controller
     }
     public function show_vocha(){
         $user_id = Auth::user()->User_id;
+        
         $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
-        $vifurushi_list = vifurushi::where('target_user','Wakala')->where('status','Active')->get();
+        $vocha_details = $this->getLatestBatchInfo($wakala_profile->Wakala_code);
        $vocha_miamala = VifurushiTransaction::where('Wakala_code',$wakala_profile->Wakala_code)->where('Transaction_type','Purchase_Vocha')->get();
        $vifurushi_wallet = VifurushiWallet::where('Wakala_code',$wakala_profile->Wakala_code)->get();
-       return view('wakalaViews.vocha',compact('wakala_profile','vocha_miamala'));
+       return view('wakalaViews.vocha',compact('wakala_profile','vocha_miamala','vocha_details'));
     }
 
     
@@ -131,7 +133,16 @@ Public function generate_customerid($size)
         return $test;
 
 }
+public function getLatestBatchInfo($wakala_code)
+{
+    // Select the latest batch_id and count of data
+    $latestBatchInfo = voucher::select('batch_id', DB::raw('count(*) as count'),'voucher_value')
+        ->where('wakala_code',$wakala_code)
+        ->groupBy('batch_id')
+        ->orderBy('voucher_id', 'desc')
+        ->first(); // Get the first result
 
- 
+    return $latestBatchInfo;
+}
    
 }

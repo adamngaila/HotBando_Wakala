@@ -241,10 +241,11 @@ class VifurushiController extends Controller
         if($status_code == 0){
             $payment_failed = "Malipo hayajafanikiwa, jaribu tena. Payments failed try again later!!";
         }
-
+    
+        $vocha_details = $this->getLatestBatchInfo($wakala_profile->Wakala_code);
       
         $vocha_miamala = VifurushiTransaction::where('Wakala_code',$wakala_profile->Wakala_code)->where('Transaction_type','Purchase_Vocha')->get();
-        return view('wakalaViews.vocha',compact('wakala_profile','vocha_miamala','payment_failed','vocha_generation_success','payment_success','transaction_details','vocha_pdf'));
+        return view('wakalaViews.vocha',compact('wakala_profile','vocha_miamala','payment_failed','vocha_generation_success','payment_success','transaction_details','vocha_pdf','vocha_details'));
 
     }
 
@@ -274,6 +275,7 @@ class VifurushiController extends Controller
         }*/
         return $response;
     }
+  
 
 
     Public function generate_transactioncode($size,$key)
@@ -326,6 +328,17 @@ class VifurushiController extends Controller
     );
 }
 
+public function getLatestBatchInfo($wakala_code)
+{
+    // Select the latest batch_id and count of data
+    $latestBatchInfo = voucher::select('batch_id', DB::raw('count(*) as count'),'voucher_value')
+        ->where('wakala_code',$wakala_code)
+        ->groupBy('batch_id')
+        ->orderBy('voucher_id', 'desc')
+        ->first(); // Get the first result
+
+    return $latestBatchInfo;
+}
 
  /* $vifurushi_W = VifurushiWallet::where('Wakala_code',$Id)->update([
                 'Purchased_vifurushi',

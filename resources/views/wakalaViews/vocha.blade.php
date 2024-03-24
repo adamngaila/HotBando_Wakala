@@ -67,6 +67,42 @@
                   </div>
                 </div>
               </div>
+              <div class="col-12 grid-margin stretch-card" id="vocha-display">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">VOCHA</h4>
+                    <div class="row report-inner-cards-wrapper">
+                    <div class="col-md-12">
+                    <table class="table table-bordered" id="table-local-customer" style="width:80%; word-wrap: break-word;">
+                      <thead>
+                        <tr>
+                      
+                          <th>BATCH ID</th>
+                          <th> VALUE</th>
+                          <th> Quantity </th>
+                          <th>ACTION</th>
+                          
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                      @foreach($vocha_details as $result)
+                      <tr>
+                      <td>{{$result->batch_id}}</td>
+                     <td>{{$result->voucher_value}}</td>
+                     <td>{{$result->count}}</td>
+                     <td><button type="submit" class="btn btn-primary mb-2" id='print_vocha'>Print</button></td>
+                    
+                    </tr>
+                    @endforeach
+                      
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                  </div>
+                </div>
+              </div>
               <div class="col-md-12 grid-margin  stretch-card">
                 <div class="card"> 
                 <div class="card-body">
