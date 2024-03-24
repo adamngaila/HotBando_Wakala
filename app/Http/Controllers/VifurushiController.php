@@ -331,7 +331,7 @@ class VifurushiController extends Controller
 public function getLatestBatchInfo($wakala_code)
 {
     // Select the latest batch_id and count of data
-    $latestBatchInfo = voucher::select('batch_id', DB::raw('count(*) as count'),'voucher_value')
+    $latestBatchInfo = voucher::select('batch_id', DB::raw('count(*) as count'), DB::raw('MAX(voucher_value) as voucher_value'))
         ->where('wakala_code',$wakala_code)
         ->groupBy('batch_id')
         ->orderBy('voucher_id', 'desc')
