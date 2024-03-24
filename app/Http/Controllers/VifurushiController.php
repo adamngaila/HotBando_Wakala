@@ -225,9 +225,10 @@ class VifurushiController extends Controller
                 $wakala_profile->Wakala_code,
                 $transaction_details->Vocha_Qty,
                 $transaction_details->Transaction_id);
+                
                 $vocha_pdf = $this->printVocha($transaction_details->Transaction_id);
             
-             if($response_url['status'] == true){
+            
 
                 VifurushiTransaction::where('Transaction_request_id',$OrderTrackingId->OrderTrackingId)->update([
                 'Transaction_status'=>"Success",
@@ -235,10 +236,6 @@ class VifurushiController extends Controller
                 ]);
                 $vocha_generation_success ="vocha generation is success";
             
-                        
-            }else{
-                $vocha_generation_success ="vocha generation is success";
-            }
             
         }
         if($status_code == 0){
@@ -261,7 +258,7 @@ class VifurushiController extends Controller
             'batchCode'=>$batchCode,
         ]);
         $data = $response->json();
-        if( $data['generate'])
+        /*if( $data['generate'])
         {
             $jibu = [
             'status'=> $data['generate'],
@@ -274,7 +271,8 @@ class VifurushiController extends Controller
                 'error'=> $data['error']
                 ];
                 return  $jibu;
-        }
+        }*/
+        return $response;
     }
 
 

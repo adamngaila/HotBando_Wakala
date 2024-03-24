@@ -88,6 +88,7 @@
                           <th>Mcode</th>
                           <th>   Tracking code </th>
                           <th>Package</th>
+                          <th> Quantity </th>
                           <th> Amount </th>
                           <th> Status </th>
                            <th> Time </th>
@@ -100,6 +101,7 @@
                       <td>{{$result->Transaction_id}}</td>
                      <td>{{$result->Transaction_request_id}}</td>
                      <td>{{$result->Vocha_Value}}</td>
+                     <td>{{$result->Vocha_Qty}}</td>
                      <td>{{$result->Amount}}</td>
                      <td>{{$result->Transaction_status}}</td>
                      <td>{{$result->created_at}}</td>
