@@ -86,7 +86,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                     
+                      @if($vocha_details)
                       <tr>
                       <td>{{$vocha_details->batch_id}}</td>
                      <td>{{$vocha_details->voucher_value}}</td>
@@ -95,7 +95,9 @@
                     
                     </tr>
                   
-                      
+                         @else
+                         <p>No data available</p>
+                          @endif
                       </tbody>
                     </table>
                   </div>
