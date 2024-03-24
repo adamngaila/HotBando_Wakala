@@ -95,6 +95,17 @@
                         </tr>
                       </thead>
                       <tbody>
+                      @foreach($vocha_miamala as $result)
+                      <tr>
+                      <td>{{$result->Transaction_id}}</td>
+                     <td>{{$result->Transaction_request_id}}</td>
+                     <td>{{$result->Vocha_Value}}</td>
+                     <td>{{$result->Amount}}</td>
+                     <td>{{$result->Transaction_status}}</td>
+                     <td>{{$result->created_at}}</td>
+                    
+                    </tr>
+                    @endforeach
                       
                       </tbody>
                     </table>
