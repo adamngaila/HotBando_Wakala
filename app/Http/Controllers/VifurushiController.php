@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\vifurushi;
 use App\Models\VifurushiTransaction;
 use App\Models\VifurushiWallet;
+use App\Models\voucher;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Carbon;
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Models\WakalaRegister;
+use Dompdf\Dompdf;
+use Illuminate\Support\Facades\View;
 
 
 class VifurushiController extends Controller
@@ -210,7 +213,8 @@ class VifurushiController extends Controller
         $user_id = Auth::user()->User_id;
         $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
        // $vifurushi_list = vifurushi::where('target_user','Wakala')->where('status','Active')->get();
-       
+      
+
         $status_code = $verify['status_code'];
         if($status_code == 1){
             $payment_success = "Malipo yamefanikiwa. Payments successiful!!";
@@ -221,6 +225,7 @@ class VifurushiController extends Controller
                 $wakala_profile->Wakala_code,
                 $transaction_details->Vocha_Qty,
                 $transaction_details->Transaction_id);
+                $vocha_pdf = $this->printVocha($transaction_details->Transaction_id);
             
              if($response_url['status'] == true){
 
@@ -229,6 +234,8 @@ class VifurushiController extends Controller
                 'Transaction_reference'=>$verify['merchant_reference'],
                 ]);
                 $vocha_generation_success ="vocha generation is success";
+            
+                        
             }else{
                 $vocha_generation_success ="vocha generation is success";
             }
@@ -240,7 +247,7 @@ class VifurushiController extends Controller
 
       
         $vocha_miamala = VifurushiTransaction::where('Wakala_code',$wakala_profile->Wakala_code)->where('Transaction_type','Purchase_Vocha')->get();
-        return view('wakalaViews.vocha',compact('wakala_profile','vocha_miamala','payment_failed','vocha_generation_success','payment_success','transaction_details'));
+        return view('wakalaViews.vocha',compact('wakala_profile','vocha_miamala','payment_failed','vocha_generation_success','payment_success','transaction_details','vocha_pdf'));
 
     }
 
@@ -294,6 +301,33 @@ class VifurushiController extends Controller
             return $test;
 
     }
+
+    public function printVocha($batch_id)
+{
+    $dompdf = new Dompdf();
+    $vocha = voucher::where('batch_id', $batch_id)->get();
+
+    $html = View::make('Exports.VochaPrintout',['vocha' => $vocha])->render();
+    // Load HTML content into Dompdf
+    $dompdf->loadHtml($html);
+
+     // Set paper size and orientation
+     $dompdf->setPaper('A4', 'portrait');
+
+    // Render PDF (optional: increase memory limit if needed)
+    $dompdf->render();
+
+    // Generate PDF file
+
+    $pdf_content = $dompdf->output();
+    return response()->streamDownload(
+        function () use ($pdf_content) {
+            echo $pdf_content;
+        },
+        'vocha.pdf'
+    );
+}
+
 
  /* $vifurushi_W = VifurushiWallet::where('Wakala_code',$Id)->update([
                 'Purchased_vifurushi',
