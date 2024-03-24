@@ -86,15 +86,15 @@
                         </tr>
                       </thead>
                       <tbody>
-                      @foreach($vocha_details as $result)
+                     
                       <tr>
-                      <td>{{$result->batch_id}}</td>
-                     <td>{{$result->voucher_value}}</td>
-                     <td>{{$result->count}}</td>
+                      <td>{{$vocha_details->batch_id}}</td>
+                     <td>{{$vocha_details->voucher_value}}</td>
+                     <td>{{$vocha_details->count}}</td>
                      <td><button type="submit" class="btn btn-primary mb-2" id='print_vocha'>Print</button></td>
                     
                     </tr>
-                    @endforeach
+                  
                       
                       </tbody>
                     </table>
