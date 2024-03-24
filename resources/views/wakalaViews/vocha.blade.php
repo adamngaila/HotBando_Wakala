@@ -71,37 +71,19 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">VOCHA</h4>
-                    <div class="row report-inner-cards-wrapper">
-                    <div class="col-md-12">
-                    <table class="table table-bordered" id="table-local-customer" style="width:80%; word-wrap: break-word;">
-                      <thead>
-                        <tr>
-                      
-                          <th>BATCH ID</th>
-                          <th> VALUE</th>
-                          <th> Quantity </th>
-                          <th>ACTION</th>
-                          
-                          
-                        </tr>
-                      </thead>
-                      <tbody>
+                
                       @if($vocha_details)
-                      <tr>
-                      <td>{{$vocha_details->batch_id}}</td>
-                     <td>{{$vocha_details->voucher_value}}</td>
-                     <td>{{$vocha_details->count}}</td>
-                     <td><button type="submit" class="btn btn-primary mb-2" id='print_vocha'>Print</button></td>
+                      <p>Batch ID: {{ $vocha_details->batch_id }}</p>
+                      <p>Count: {{ $vocha_details->count }}</p>
+                      <p>Voucher Value: {{ $vocha_details->voucher_value }}</p>
+                     <button type="submit" class="btn btn-primary mb-2" id='print_vocha'>Print</button>
                     
-                    </tr>
+                  
                   
                          @else
                          <p>No data available</p>
                           @endif
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+                    
                   </div>
                 </div>
               </div>
