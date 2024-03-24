@@ -174,7 +174,8 @@ class VifurushiController extends Controller
                 'Transaction_type'=>"Purchase_Vocha",
                 'Value'=> $value,
                 'Amount'=> $Amount,
-                'kifurushi_id'=>$request->vocha_list,
+                'Vocha_Value'=>$request->vocha_list,
+                'Vocha_Qty'=>$request->qty,
                 'Transaction_request_id'=> $trans_request_id,
                 'Transaction_status'=>"Pending",
 
@@ -193,6 +194,80 @@ class VifurushiController extends Controller
             ]);
         }
        
+    }
+
+    public function verify_vocha_purchase_payments(Request $OrderTrackingId){
+        //"call_back_url": "http://192.168.88.253/rensponse?OrderTrackingId=de51f26c-9438-4a6e-9b8a-de54c3bf7dca&OrderMerchantReference=1691489147-0613017308-1000",
+        //https://api.hotbando.tech//verifyPayment?OrderTrackingId=d6611536-014f-4417-a802-dd8f4e5334de
+        $url ="https://api.hotbando.tech//verifyPayment";
+        $verify = http::get($url,[
+            'OrderTrackingId'=>$OrderTrackingId->OrderTrackingId,
+        ]);
+        $payment_failed ="";
+        $payment_success ="";
+        $vocha_generation_success ="";
+
+        $user_id = Auth::user()->User_id;
+        $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
+       // $vifurushi_list = vifurushi::where('target_user','Wakala')->where('status','Active')->get();
+       
+        $status_code = $verify['status_code'];
+        if($status_code == 1){
+            $payment_success = "Malipo yamefanikiwa. Payments successiful!!";
+            $transaction_details = VifurushiTransaction::where('Transaction_request_id',$OrderTrackingId->OrderTrackingId)->first();
+            
+            $generate_vocha = $this->request_vocha_generate(
+                $transaction_details->Vocha_Value,
+                $wakala_profile->Wakala_code,
+                $transaction_details->Vocha_Qty,
+                $transaction_details->Transaction_id);
+            
+             if($response_url['status'] == true){
+
+                VifurushiTransaction::where('Transaction_request_id',$OrderTrackingId->OrderTrackingId)->update([
+                'Transaction_status'=>"Success",
+                'Transaction_reference'=>$verify['merchant_reference'],
+                ]);
+                $vocha_generation_success ="vocha generation is success";
+            }else{
+                $vocha_generation_success ="vocha generation is success";
+            }
+            
+        }
+        if($status_code == 0){
+            $payment_failed = "Malipo hayajafanikiwa, jaribu tena. Payments failed try again later!!";
+        }
+
+      
+        $vocha_miamala = VifurushiTransaction::where('Wakala_code',$wakala_profile->Wakala_code)->where('Transaction_type','Purchase_Vocha')->get();
+        return view('wakalaViews.vocha',compact('wakala_profile','vocha_miamala','payment_failed','vocha_generation_success','payment_success','transaction_details'));
+
+    }
+
+    Public function request_vocha_generate($value,$wakalaCode,$amount,$batchCode){
+        $url = "https://api.hotbando.tech/generateVocha";
+
+        $response = http::post($url,[
+            'value'=>$value,
+            'wakalaCode'=>$wakalaCode,
+            'amount'=>$amount,
+            'batchCode'=>$batchCode,
+        ]);
+        $data = $response->json();
+        if( $data['generate'])
+        {
+            $jibu = [
+            'status'=> $data['generate'],
+            ];
+            return  $jibu;
+        }else{
+            
+            $jibu = [
+                'status'=> $data['generate'],
+                'error'=> $data['error']
+                ];
+                return  $jibu;
+        }
     }
 
 

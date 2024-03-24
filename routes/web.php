@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::any('/user/{user}', [AdminController::class, 'destroy'])->name('users.destroy');
 
     Route::any('/purchase_vocha', [VifurushiController::class,'purchase_vocha_process'])->name('purchase_vocha');
+    Route::any('/purchased-vocha', [VifurushiController::class,'verify_vocha_purchase_payments'])->name('purchased-vocha');
 
 
 });

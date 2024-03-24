@@ -17,5 +17,7 @@ class VifurushiTransaction extends Model
         'Transaction_request_id',
         'Transaction_reference',
         'Transaction_status',
+        'Vocha_Value',
+        'Vocha_Qty',
     ];
 }

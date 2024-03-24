@@ -102,9 +102,9 @@ class WakalaController extends Controller
         $user_id = Auth::user()->User_id;
         $wakala_profile = WakalaRegister::where('User_id',$user_id)->first();
         $vifurushi_list = vifurushi::where('target_user','Wakala')->where('status','Active')->get();
-       $vifurushi_miamala = VifurushiTransaction::where('Wakala_code',$wakala_profile->Wakala_code)->get();
+       $vocha_miamala = VifurushiTransaction::where('Wakala_code',$wakala_profile->Wakala_code)->where('Transaction_type','Purchase_Vocha')->get();
        $vifurushi_wallet = VifurushiWallet::where('Wakala_code',$wakala_profile->Wakala_code)->get();
-       return view('wakalaViews.vocha',compact('wakala_profile','vifurushi_list','vifurushi_miamala','vifurushi_wallet'));
+       return view('wakalaViews.vocha',compact('wakala_profile','vocha_miamala'));
     }
 
     
