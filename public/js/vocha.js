@@ -70,7 +70,7 @@ $(document).ready(function(){
 
     // Assume you have jQuery included in your project
     $('#print_vocha').on('click', function() {
-        var batch_id = $('#batch_id_input').val(); // Retrieve batch ID from hidden input
+        var batch_id = $('#batch_id').val(); // Retrieve batch ID from hidden input
 
         // Make Ajax request to download PDF
         $.ajax({
