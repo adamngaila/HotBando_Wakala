@@ -77,9 +77,7 @@ $(document).ready(function(){
             url: '{{ route("export-vocha-printout") }}',
             method: 'GET',
             data: { batch_id: batch_id },
-            xhrFields: {
-                responseType: 'blob' // Set response type to blob
-            },
+            
             success: function(response) {
                 // Create blob URL for the PDF
               

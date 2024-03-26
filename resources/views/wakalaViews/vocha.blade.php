@@ -76,7 +76,8 @@
                       <p>Batch ID: {{ $vocha_details->batch_id }}</p>
                     
                       <p>Voucher Value: {{ $vocha_details->voucher_value }}</p>
-                      <input type="hidden" class="form-control" id="batch_id" name="batch_id" value="{{ $vocha_details->batch_id }}" disabled>
+                      
+                      <input type="hidden" class="form-control" id="batch_id" name="batch_id" value="{{ $vocha_details->batch_id }}" >
                      <button type="submit" class="btn btn-primary mb-2" id='print_vocha'>Print</button>
                     
                   
