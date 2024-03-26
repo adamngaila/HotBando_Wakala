@@ -1,3 +1,5 @@
+use Milon\Barcode\DNS1D;
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

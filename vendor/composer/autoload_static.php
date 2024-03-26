@@ -531,6 +531,16 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'M' => 
+        array (
+            'Milon\\Barcode' => 
+            array (
+                0 => __DIR__ . '/..' . '/milon/barcode/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -547,6 +557,7 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         'App\\Http\\Controllers\\SystemController' => __DIR__ . '/../..' . '/app/Http/Controllers/SystemController.php',
         'App\\Http\\Controllers\\TransactionController' => __DIR__ . '/../..' . '/app/Http/Controllers/TransactionController.php',
         'App\\Http\\Controllers\\VifurushiController' => __DIR__ . '/../..' . '/app/Http/Controllers/VifurushiController.php',
+        'App\\Http\\Controllers\\VoucherController' => __DIR__ . '/../..' . '/app/Http/Controllers/VoucherController.php',
         'App\\Http\\Controllers\\WakalaController' => __DIR__ . '/../..' . '/app/Http/Controllers/WakalaController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -569,6 +580,7 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         'App\\Models\\VifurushiWallet' => __DIR__ . '/../..' . '/app/Models/VifurushiWallet.php',
         'App\\Models\\WakalaRegister' => __DIR__ . '/../..' . '/app/Models/WakalaRegister.php',
         'App\\Models\\vifurushi' => __DIR__ . '/../..' . '/app/Models/vifurushi.php',
+        'App\\Models\\voucher' => __DIR__ . '/../..' . '/app/Models/voucher.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -3262,6 +3274,20 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         'Masterminds\\HTML5\\Serializer\\OutputRules' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Serializer/OutputRules.php',
         'Masterminds\\HTML5\\Serializer\\RulesInterface' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Serializer/RulesInterface.php',
         'Masterminds\\HTML5\\Serializer\\Traverser' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Serializer/Traverser.php',
+        'Milon\\Barcode\\BarcodeServiceProvider' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/BarcodeServiceProvider.php',
+        'Milon\\Barcode\\DNS1D' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/DNS1D.php',
+        'Milon\\Barcode\\DNS2D' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/DNS2D.php',
+        'Milon\\Barcode\\Datamatrix' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/Datamatrix.php',
+        'Milon\\Barcode\\Facades\\DNS1DFacade' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/Facades/DNS1DFacade.php',
+        'Milon\\Barcode\\Facades\\DNS2DFacade' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/Facades/DNS2DFacade.php',
+        'Milon\\Barcode\\GS1_128\\AIData' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/GS1_128/AIData.php',
+        'Milon\\Barcode\\GS1_128\\GS1128' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/GS1_128/GS1128.php',
+        'Milon\\Barcode\\GS1_128\\Section' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/GS1_128/Section.php',
+        'Milon\\Barcode\\GS1_128\\SectionSlicer' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/GS1_128/SectionSlicer.php',
+        'Milon\\Barcode\\GS1_128\\Subsets' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/GS1_128/Subsets.php',
+        'Milon\\Barcode\\PDF417' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/PDF417.php',
+        'Milon\\Barcode\\QRcode' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/QRcode.php',
+        'Milon\\Barcode\\WrongCheckDigitException' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/WrongCheckDigitException.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditions' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditions.php',
         'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',
@@ -5729,6 +5755,7 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a::$classMap;
 
         }, null, ClassLoader::class);
