@@ -69,39 +69,38 @@ $(document).ready(function(){
     });
 
     // Assume you have jQuery included in your project
-$('#print_vocha').click(function() {
-    var batch_id = $('#batch_id_input').val(); // Assuming you have batch_id stored as a data attribute
+    $('#print_vocha').on('click', function() {
+        var batch_id = $('#batch_id_input').val(); // Retrieve batch ID from hidden input
 
-    $.ajax({
-        url: '/export-vocha-printout',
-        type: 'POST',
-        data: {
-            batch_id: batch_id
-        },
-        xhrFields: {
-            responseType: 'blob' // Set the response type to blob
-        },
-        success: function(response) {
-            // Convert the response to blob and create a blob URL
-            var blob = new Blob([response], { type: 'application/pdf' });
-            var url = window.URL.createObjectURL(blob);
-            
-            // Create a link element and trigger the download
-            var a = document.createElement('a');
-            a.href = url;
-            a.download = 'vocha.pdf';
-            document.body.appendChild(a);
-            a.click();
-            
-            // Remove the link element
-            window.URL.revokeObjectURL(url);
-            $(a).remove();
-        },
-        error: function(xhr, status, error) {
-            console.error(error);
-            alert('An error occurred while exporting PDF.');
-        }
+        // Make Ajax request to download PDF
+        $.ajax({
+            url: '{{ route("export-vocha-printout") }}',
+            method: 'GET',
+            data: { batch_id: batch_id },
+            xhrFields: {
+                responseType: 'blob' // Set response type to blob
+            },
+            success: function(response) {
+                // Create blob URL for the PDF
+                var blob = new Blob([response], { type: 'application/pdf' });
+                var url = window.URL.createObjectURL(blob);
+
+                // Create a link and trigger the download
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'vocha.pdf';
+                document.body.appendChild(a);
+                a.click();
+
+                // Cleanup
+                window.URL.revokeObjectURL(url);
+                $(a).remove();
+            },
+            error: function(xhr, status, error) {
+                console.error('Ajax request failed:', error);
+            }
+        });
     });
-});
+
 
 });
