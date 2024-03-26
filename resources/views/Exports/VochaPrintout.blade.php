@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,8 +43,7 @@
                 <div class="transaction-id">vocha: {{ $voc->voucher_value }}</div>
                 <div class="transaction-code">Code: {{ $voc->voucher_code }}</div>
                 <div class="barcode">
-                    {!! DNS1D::getBarcodeHTML($voc->voucher_code, 'C39', 1, 50) !!} <!-- Barcode for Transaction ID -->
-                    
+                    {!! (new Milon\Barcode\DNS1D)->getBarcodeHTML($voc->voucher_code, 'C39', 1, 50) !!} <!-- Barcode for Transaction ID -->
                 </div>
             </div>
             @if ($loop->iteration % 50 == 0)
