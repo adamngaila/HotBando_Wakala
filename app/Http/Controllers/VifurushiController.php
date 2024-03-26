@@ -226,7 +226,7 @@ class VifurushiController extends Controller
                 $transaction_details->Vocha_Qty,
                 $transaction_details->Transaction_id);
                 
-                $vocha_pdf = $this->printVocha($transaction_details->Transaction_id);
+             
             
             
 
@@ -245,7 +245,7 @@ class VifurushiController extends Controller
         $vocha_details = $this->getLatestBatchInfo($wakala_profile->Wakala_code);
       
         $vocha_miamala = VifurushiTransaction::where('Wakala_code',$wakala_profile->Wakala_code)->where('Transaction_type','Purchase_Vocha')->get();
-        return view('wakalaViews.vocha',compact('wakala_profile','vocha_miamala','payment_failed','vocha_generation_success','payment_success','transaction_details','vocha_pdf','vocha_details'));
+        return view('wakalaViews.vocha',compact('wakala_profile','vocha_miamala','payment_failed','vocha_generation_success','payment_success','transaction_details','vocha_details'));
 
     }
 
@@ -302,10 +302,10 @@ class VifurushiController extends Controller
 
     }
 
-    public function printVocha($batch_id)
+    public function printVocha(Request $request)
 {
     $dompdf = new Dompdf();
-    $vocha = voucher::where('batch_id', $batch_id)->get();
+    $vocha = voucher::where('batch_id', $request->batch_id)->get();
 
     $html = View::make('Exports.VochaPrintout',['vocha' => $vocha])->render();
     // Load HTML content into Dompdf

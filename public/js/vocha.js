@@ -67,4 +67,26 @@ $(document).ready(function(){
             }
         });
     });
+
+    // Assume you have jQuery included in your project
+$('#print_vocha').click(function() {
+    var batch_id = $('#batch_id_input').val(); // Assuming you have batch_id stored as a data attribute
+
+    $.ajax({
+        url: '/export-vocha-printout',
+        type: 'POST',
+        data: {
+            batch_id: batch_id
+        },
+        success: function(response) {
+            // Assuming the response contains the PDF file URL
+            window.open(response, '_blank');
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+            alert('An error occurred while exporting PDF.');
+        }
+    });
+});
+
 });
