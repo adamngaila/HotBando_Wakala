@@ -82,19 +82,7 @@ $(document).ready(function(){
             },
             success: function(response) {
                 // Create blob URL for the PDF
-                var blob = new Blob([response], { type: 'application/pdf' });
-                var url = window.URL.createObjectURL(blob);
-
-                // Create a link and trigger the download
-                var a = document.createElement('a');
-                a.href = url;
-                a.download = 'vocha.pdf';
-                document.body.appendChild(a);
-                a.click();
-
-                // Cleanup
-                window.URL.revokeObjectURL(url);
-                $(a).remove();
+              
             },
             error: function(xhr, status, error) {
                 console.error('Ajax request failed:', error);
