@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
 
     Route::any('/purchase_vocha', [VifurushiController::class,'purchase_vocha_process'])->name('purchase_vocha');
     Route::any('/purchased-vocha', [VifurushiController::class,'verify_vocha_purchase_payments'])->name('purchased-vocha');
-    Rouyte::any('/export-vocha-printout',[VifurushiController::class,'printVocha'])->name('export-vocha-printout');
+    Route::any('/export-vocha-printout',[VifurushiController::class,'printVocha'])->name('export-vocha-printout');
 
 
 });
