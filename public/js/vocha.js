@@ -78,9 +78,24 @@ $('#print_vocha').click(function() {
         data: {
             batch_id: batch_id
         },
+        xhrFields: {
+            responseType: 'blob' // Set the response type to blob
+        },
         success: function(response) {
-            // Assuming the response contains the PDF file URL
-            window.open(response, '_blank');
+            // Convert the response to blob and create a blob URL
+            var blob = new Blob([response], { type: 'application/pdf' });
+            var url = window.URL.createObjectURL(blob);
+            
+            // Create a link element and trigger the download
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'vocha.pdf';
+            document.body.appendChild(a);
+            a.click();
+            
+            // Remove the link element
+            window.URL.revokeObjectURL(url);
+            $(a).remove();
         },
         error: function(xhr, status, error) {
             console.error(error);
