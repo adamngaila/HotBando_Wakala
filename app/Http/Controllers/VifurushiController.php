@@ -253,9 +253,9 @@ class VifurushiController extends Controller
         $url = "https://api.hotbando.tech/generateVocha";
 
         $response = http::post($url,[
-            'value'=>$value,
+            'value'=>(float)$value,
             'wakalaCode'=>$wakalaCode,
-            'amount'=>$amount,
+            'amount'=>(int)$amount,
             'batchCode'=>$batchCode,
         ]);
         $data = $response->json();
