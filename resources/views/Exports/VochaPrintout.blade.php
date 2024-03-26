@@ -1,4 +1,8 @@
-use Milon\Barcode\DNS1D;
+@php
+    // Include the DNS1D class file
+    include_once(public_path('vendor/milon/barcode/src/Milon/Barcode/DNS1D.php'));
+
+@endphp
 
 <!DOCTYPE html>
 <html lang="en">
